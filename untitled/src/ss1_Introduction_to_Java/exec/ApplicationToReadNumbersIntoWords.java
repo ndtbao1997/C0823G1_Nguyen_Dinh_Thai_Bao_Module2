@@ -2,7 +2,7 @@ package ss1_Introduction_to_Java.exec;
 
 import java.util.Scanner;
 
-public class Ung_Dung_Doc_So_Thanh_Chu {
+public class ApplicationToReadNumbersIntoWords {
     public static void main(String[] args) {
         int number;
         Scanner sc = new Scanner(System.in);
