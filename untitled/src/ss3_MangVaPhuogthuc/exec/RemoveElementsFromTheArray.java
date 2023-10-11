@@ -5,17 +5,21 @@ import java.util.Scanner;
 
 public class RemoveElementsFromTheArray {
     public static void main(String[] args) {
+        int n;
+        int numToSearch;
+        int index;
+        int[] numArr;
         Scanner sc = new Scanner(System.in);
         System.out.println("Hãy nhập số lượng phần tử của mảng");
-        int n = sc.nextInt();
-        int[] numArr = new int[n];
+        n = sc.nextInt();
+        numArr = new int[n];
         for (int i = 0; i < n; i++) {
             System.out.println("Hãy nhập giá trị của phần tử " + (i + 1));
             numArr[i] = sc.nextInt();
         }
-        System.out.println("Hãy nhập giá trị bạn cần tìm");
-        int numToSearch = sc.nextInt();
-        int index = Arrays.binarySearch(numArr, numToSearch);
+        System.out.println("Hãy nhập giá trị bạn cần xóa");
+        numToSearch = sc.nextInt();
+        index = Arrays.binarySearch(numArr, numToSearch);
         if (index < 0) {
             System.out.println("Phần tử không tìm thấy trong mảng");
         } else {

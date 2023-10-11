@@ -4,18 +4,22 @@ import java.util.Scanner;
 
 public class AddElementsToTheArray {
     public static void main(String[] args) {
+        int a;
+        int[] numArr;
+        int newValue;
+        int index;
         Scanner sc = new Scanner(System.in);
         System.out.println("Hãy nhập số phần tử của mảng");
-        int a = Integer.parseInt(sc.nextLine());
-        int[] numArr = new int[a];
+        a = Integer.parseInt(sc.nextLine());
+        numArr = new int[a];
         for (int i = 0; i < a; i++) {
             System.out.println("Hãy nhập giá trị của phần tử " + (i + 1));
             numArr[i] = sc.nextInt();
         }
         System.out.println("Hãy nhập giá trị cần thêm vào mảng");
-        int newValue = sc.nextInt();
+        newValue = sc.nextInt();
         System.out.println("Hãy nhập vị trí muốn thêm vào");
-        int index = sc.nextInt();
+        index = sc.nextInt();
         if (numArr[a-1] != 0){
             System.out.println("Mảng đã chứa đầy phần tử! Không thể thêm vào nữa");
         } else {
