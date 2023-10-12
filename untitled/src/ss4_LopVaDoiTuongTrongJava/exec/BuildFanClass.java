@@ -11,26 +11,26 @@ public class BuildFanClass {
     public int getSpeed(){
         return this.speed;
     }
-    public int setSpeed(int speed){
-        return this.speed = speed;
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
     public boolean getOn(){
         return this.on;
     }
-    public boolean setON(boolean on){
-        return this.on = on;
+    public void setON(boolean on){
+        this.on = on;
     }
     public double getRadius(){
         return this.radius;
     }
-    public double setRadius(double radius){
-        return this.radius = radius;
+    public void setRadius(double radius){
+        this.radius = radius;
     }
     public String getColor(){
         return this.color;
     }
-    public String setColor(String color){
-        return this.color = color;
+    public void setColor(String color){
+        this.color = color;
     }
     public BuildFanClass(){
     }
