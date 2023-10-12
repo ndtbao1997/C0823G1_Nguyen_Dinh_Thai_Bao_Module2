@@ -22,8 +22,12 @@ public class CalculateTheTotalInOneColumn {
             System.out.println("Cột này không tồn tại");
         } else {
             double total = 0;
-            for (int k = 0; k < realNumArr[totalOfRow].length; k++){
-                total += realNumArr[totalOfRow][k];
+            for (double[] doubles : realNumArr) {
+                for (int m = 0; m < doubles.length; m++) {
+                    if (m == totalOfRow) {
+                        total += doubles[m];
+                    }
+                }
             }
             System.out.println("Tổng của cột " + totalOfRow + " là " + total);
         }

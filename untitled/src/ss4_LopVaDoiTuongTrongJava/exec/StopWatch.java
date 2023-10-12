@@ -3,40 +3,44 @@ package ss4_LopVaDoiTuongTrongJava.exec;
 import java.time.LocalTime;
 
 public class StopWatch {
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private long startTime;
+    private long endTime;
 
-    public LocalTime getStartTime(LocalTime startTime) {
+    public long getStartTime(long startTime) {
         return startTime;
     }
 
-    public LocalTime getEndTime(LocalTime endTime) {
+    public long getEndTime(long endTime) {
         return endTime;
     }
 
     StopWatch() {
-        startTime = LocalTime.now();
+        startTime = System.currentTimeMillis();
     }
 
     public void start() {
-        this.startTime = LocalTime.now();
+        this.startTime = System.currentTimeMillis();
         getStartTime(startTime);
     }
 
     public void stop() {
-        this.endTime = LocalTime.now();
+        this.endTime = System.currentTimeMillis();
         getEndTime(endTime);
     }
 
     public void getElapsedTime() {
-        int ElaspedTime = (startTime.getSecond() - endTime.getSecond()) * 100;
-        System.out.println("Số mili giây đếm đc:" + ElaspedTime);
+        long elaspedTime = this.endTime-this.startTime;
+        System.out.println("Số mili giây đếm đc:" + elaspedTime);
     }
+
 
     public static void main(String[] args) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         System.out.println("Đang đếm thời gian");
+        for (int i = 0; i < 1000000000; i++) {
+            i++;
+        }
         stopWatch.stop();
         stopWatch.getElapsedTime();
     }
