@@ -23,11 +23,7 @@ public class CalculateTheTotalInOneColumn {
         } else {
             double total = 0;
             for (double[] doubles : realNumArr) {
-                for (int m = 0; m < doubles.length; m++) {
-                    if (m == totalOfRow) {
-                        total += doubles[m];
-                    }
-                }
+                total += doubles[totalOfRow];
             }
             System.out.println("Tổng của cột " + totalOfRow + " là " + total);
         }
