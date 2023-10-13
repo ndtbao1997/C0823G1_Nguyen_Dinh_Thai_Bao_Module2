@@ -5,12 +5,12 @@ public class StopWatch {
     private long startTime;
     private long endTime;
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public long getStartTime() {
+        return this.startTime;
     }
 
-    public void setEndTime(long endTime) {
-        this.endTime = endTime;
+    public long getEndTime() {
+        return this.endTime;
     }
 
     StopWatch() {
