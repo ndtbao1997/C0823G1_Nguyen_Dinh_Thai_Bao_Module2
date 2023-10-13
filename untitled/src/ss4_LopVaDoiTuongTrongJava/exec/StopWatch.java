@@ -1,17 +1,16 @@
 package ss4_LopVaDoiTuongTrongJava.exec;
 
-import java.time.LocalTime;
 
 public class StopWatch {
     private long startTime;
     private long endTime;
 
-    public long getStartTime(long startTime) {
-        return startTime;
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
-    public long getEndTime(long endTime) {
-        return endTime;
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
 
     StopWatch() {
@@ -20,12 +19,10 @@ public class StopWatch {
 
     public void start() {
         this.startTime = System.currentTimeMillis();
-        getStartTime(startTime);
     }
 
     public void stop() {
         this.endTime = System.currentTimeMillis();
-        getEndTime(endTime);
     }
 
     public void getElapsedTime() {
