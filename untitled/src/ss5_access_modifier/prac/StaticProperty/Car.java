@@ -1,4 +1,4 @@
-package ss5_AccessModifier.prac.StaticProperty;
+package ss5_access_modifier.prac.StaticProperty;
 
 public class Car {
     private String name;

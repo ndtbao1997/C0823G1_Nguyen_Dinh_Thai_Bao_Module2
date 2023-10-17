@@ -1,4 +1,4 @@
-package ss5_AccessModifier.prac;
+package ss5_access_modifier.prac;
 
 public class Student {
     int rollno;
