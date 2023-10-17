@@ -1,4 +1,4 @@
-package ss6_inheritance.exec.ClassTriangle;
+package ss6_inheritance.exec.class_triangle;
 
 public class Tringle extends Shape{
     private double side1 = 1.0;

@@ -1,12 +1,12 @@
-package ss6_inheritance.exec.Point2DandPoint3D;
+package ss6_inheritance.exec.point2d_and_point3d;
 
 public class Point3D extends Point2D{
     private float z;
-    Point3D(){}
-    Point3D(float z){
+    public Point3D(){}
+    public Point3D(float z){
         this.z = z;
     }
-    Point3D(float x, float y, float z){
+    public Point3D(float x, float y, float z){
         super(x, y);
         this.z = z;
     }
@@ -28,6 +28,6 @@ public class Point3D extends Point2D{
 
     @Override
     public String toString() {
-        return super.toString() + ", " + z;
+        return super.toString() + ", z = " + z;
     }
 }

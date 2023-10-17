@@ -1,10 +1,10 @@
-package ss6_inheritance.exec.CircleAndCylinder;
+package ss6_inheritance.exec.circle_and_cylinder;
 
 public class Circle {
     private double radius;
     private String color;
-    Circle(){}
-    Circle(double radius, String color){
+    public Circle(){}
+    public Circle(double radius, String color){
         this.radius = radius;
         this.color = color;
     }

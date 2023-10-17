@@ -1,4 +1,4 @@
-package ss6_inheritance.exec.PointAndMoveablePoint;
+package ss6_inheritance.exec.point_and_moveablepoint;
 
 public class Point {
     private float x;

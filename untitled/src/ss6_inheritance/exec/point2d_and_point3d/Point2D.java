@@ -1,10 +1,10 @@
-package ss6_inheritance.exec.Point2DandPoint3D;
+package ss6_inheritance.exec.point2d_and_point3d;
 
 public class Point2D {
     private float x;
     private float y;
-    Point2D(){}
-    Point2D(float x, float y){
+    public Point2D(){}
+    public Point2D(float x, float y){
         this.x = x;
         this.y = y;
     }
@@ -34,6 +34,6 @@ public class Point2D {
 
     @Override
     public String toString() {
-        return x + ", " + y;
+        return "x = " + x + ", y = " + y;
     }
 }

@@ -1,4 +1,4 @@
-package ss6_inheritance.exec.ClassTriangle;
+package ss6_inheritance.exec.class_triangle;
 
 public abstract class Shape {
     private String color;
