@@ -1,9 +1,9 @@
-package ss5_AccessModifier.exec.ClassJava;
+package ss5_AccessModifier.exec.class_java;
 
 public class Students {
     private String name = "Join";
     private String classes = "C02";
-    Students(){
+    public Students(){
     }
 
     public void setName(String name) {
