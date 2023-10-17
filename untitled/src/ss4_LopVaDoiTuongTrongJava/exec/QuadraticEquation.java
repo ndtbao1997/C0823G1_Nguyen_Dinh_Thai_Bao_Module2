@@ -46,7 +46,6 @@ public class QuadraticEquation {
     }
 
     public double getRoot2() {
-        double squareRoot1 = Math.pow((Math.pow(this.b, 2) - 4 * this.a * this.c), 0.5);
-        return (0 - this.b - squareRoot1) / 2 * this.a;
+        return (0 - this.b - Math.pow(getDiscriminant(), 0.5)) / 2 * this.a;
     }
 }
