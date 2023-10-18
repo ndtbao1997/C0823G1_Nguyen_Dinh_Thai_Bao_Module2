@@ -4,7 +4,7 @@ public class MovablePoint extends Point{
     private float xSpeed;
     private float ySpeed;
     MovablePoint(){}
-    MovablePoint(float xSpeed, float ySpeed){
+    public MovablePoint(float xSpeed, float ySpeed){
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
     }
