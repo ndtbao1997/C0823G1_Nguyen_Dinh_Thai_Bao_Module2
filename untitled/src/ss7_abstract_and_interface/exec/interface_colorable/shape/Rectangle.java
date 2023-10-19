@@ -1,6 +1,6 @@
-package ss7_abstract_and_interface.exec.interface_resizeable.shape;
+package ss7_abstract_and_interface.exec.interface_colorable.shape;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double height = 1.0;
     public Rectangle(){}
@@ -10,19 +10,9 @@ public class Rectangle extends Shape{
         this.height = height;
     }
 
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
+    public Rectangle(String color, boolean filled, double width, double height) {
+        super(color, filled);
         this.width = width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -33,7 +23,7 @@ public class Rectangle extends Shape{
 
     @Override
     public double getPerimeter() {
-        return 2*(width+height);
+        return (width+height)*2;
     }
 
     @Override
@@ -41,11 +31,5 @@ public class Rectangle extends Shape{
         return "Rectangle{" +
                 "acreage = " + getArea() +
                 '}';
-    }
-
-    @Override
-    public void resize(double percent) {
-        this.width *= (percent + 1);
-        this.height *= (percent + 1);
     }
 }

@@ -14,8 +14,11 @@ public class TestShape {
         shapes[2] = new Square(6);
         percent = Math.random();
         for (Shape shape: shapes){
-            shape.resize(percent);
             System.out.println(shape);
+            shape.resize(percent);
+            System.out.println("After resize " + (percent+1) * 100 + "%");
+            System.out.println(shape + "\n");
         }
+
     }
 }

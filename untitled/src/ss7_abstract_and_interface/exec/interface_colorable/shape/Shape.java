@@ -2,7 +2,7 @@ package ss7_abstract_and_interface.exec.interface_colorable.shape;
 
 import ss7_abstract_and_interface.exec.interface_colorable.colorable.Colorable;
 
-public abstract class Shape implements Colorable {
+public abstract class Shape {
     private String color = "blue";
     private boolean filled = true;
     public Shape(){}

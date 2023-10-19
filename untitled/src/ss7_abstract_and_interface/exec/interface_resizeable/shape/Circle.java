@@ -29,7 +29,11 @@ public class Circle extends Shape{
     public String toString() {
         return "Circle{" +
                 "acreage = " + getArea() +
-                ", acreage after resize = " + resizeShape() +
                 '}';
+    }
+
+    @Override
+    public void resize(double percent) {
+        this.radius *= (percent+1);
     }
 }
