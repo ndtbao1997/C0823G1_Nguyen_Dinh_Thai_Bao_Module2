@@ -5,12 +5,12 @@ public class TennisGame {
     private static final int FIRST_SCORE = 1;
     private static final int SECOND_SCORE = 2;
     private static final int THIRD_SCORE = 3;
-    public static final String INITIAL_SCORE_DISPLAY = "Love";
-    public static final String FIRST_SCORE_DISPLAY = "Fifteen";
-    public static final String SECOND_SCORE_DISPLAY = "Thirty";
-    public static final String THIRD_SCORE_DISPLAY = "Forty";
-    public static final String EQUAL_SCORE_DISPLAY = "All";
-    public static final String DEUCE = "Deuce";
+    private static final String INITIAL_SCORE_DISPLAY = "Love";
+    private static final String FIRST_SCORE_DISPLAY = "Fifteen";
+    private static final String SECOND_SCORE_DISPLAY = "Thirty";
+    private static final String THIRD_SCORE_DISPLAY = "Forty";
+    private static final String EQUAL_SCORE_DISPLAY = "All";
+    private static final String DEUCE = "Deuce";
 
 
     public static String getScore(String player1Name, String player2Name, int scorePlayer1, int scorePlayer2) {
