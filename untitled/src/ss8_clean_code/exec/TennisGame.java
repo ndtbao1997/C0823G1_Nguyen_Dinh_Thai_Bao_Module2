@@ -5,6 +5,12 @@ public class TennisGame {
     private static final int FIRST_SCORE = 1;
     private static final int SECOND_SCORE = 2;
     private static final int THIRD_SCORE = 3;
+    public static final String INITIAL_SCORE_DISPLAY = "Love";
+    public static final String FIRST_SCORE_DISPLAY = "Fifteen";
+    public static final String SECOND_SCORE_DISPLAY = "Thirty";
+    public static final String THIRD_SCORE_DISPLAY = "Forty";
+    public static final String EQUAL_SCORE_DISPLAY = "All";
+    public static final String DEUCE = "Deuce";
 
 
     public static String getScore(String player1Name, String player2Name, int scorePlayer1, int scorePlayer2) {
@@ -29,16 +35,16 @@ public class TennisGame {
             }
             switch (tempScore) {
                 case INITIAL_SCORE:
-                    score += "Love";
+                    score += INITIAL_SCORE_DISPLAY;
                     break;
                 case FIRST_SCORE:
-                    score += "Fifteen";
+                    score += FIRST_SCORE_DISPLAY;
                     break;
                 case SECOND_SCORE:
-                    score += "Thirty";
+                    score += SECOND_SCORE_DISPLAY;
                     break;
                 case THIRD_SCORE:
-                    score += "Forty";
+                    score += THIRD_SCORE_DISPLAY;
                     break;
             }
         }
@@ -47,11 +53,11 @@ public class TennisGame {
 
     public static String getEqualScore(int scorePlayer1) {
         return switch (scorePlayer1) {
-            case INITIAL_SCORE -> "Love-All";
-            case FIRST_SCORE -> "Fifteen-All";
-            case SECOND_SCORE -> "Thirty-All";
-            case THIRD_SCORE -> "Forty-All";
-            default -> "Deuce";
+            case INITIAL_SCORE -> INITIAL_SCORE_DISPLAY + "-" + EQUAL_SCORE_DISPLAY;
+            case FIRST_SCORE -> FIRST_SCORE_DISPLAY + "-" + EQUAL_SCORE_DISPLAY;
+            case SECOND_SCORE -> SECOND_SCORE_DISPLAY + "-" + EQUAL_SCORE_DISPLAY;
+            case THIRD_SCORE -> THIRD_SCORE_DISPLAY + "-" + EQUAL_SCORE_DISPLAY;
+            default -> DEUCE;
         };
     }
 
@@ -66,6 +72,6 @@ public class TennisGame {
     }
 
     public static void main(String[] args) {
-        System.out.println(getScore("LeVanDO", "NguyenTrongHai", 4, 6));
+        System.out.println(getScore("LeVanDO", "NguyenTrongHai", 5, 5));
     }
 }
