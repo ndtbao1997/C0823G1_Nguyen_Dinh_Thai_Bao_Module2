@@ -7,6 +7,7 @@ import bai_tap_lam_them_1.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class PersonRepository implements IPersonRepository{
     private static List<Person> personList = new ArrayList<>();
@@ -33,20 +34,40 @@ public class PersonRepository implements IPersonRepository{
     public void removeStudent(String id) {
         for(Person x: personList){
             if (Objects.equals(x.getId(), id)){
-                personList.remove(x);
-                System.out.println("Bạn đã xóa thành công\n");
+                checkYesOrNo(x);
                 return;
             }
         }
         System.out.println("Id bạn nhập vào không tồn tại\n");
     }
 
+    private static void checkYesOrNo(Person x) {
+        Scanner scanner= new Scanner(System.in);
+        String yesOrNo;
+        System.out.println("Hãy xác nhận là bạn muốn xóa.\n" +
+                "Yes là đồng ý, No là từ chối.");
+        do {
+            yesOrNo = scanner.nextLine();
+            switch (yesOrNo){
+                case "Yes":
+                    personList.remove(x);
+                    System.out.println("Bạn đã xóa thành công\n");
+                    return;
+                case "No":
+                    System.out.println("Bạn đã hủy xóa!");
+                    return;
+                default:
+                    System.out.println("Chỉ được nhập Yes hoặc No.\n" +
+                            "Xin mời nhập lại.");
+            }
+        }while (true);
+    }
+
     @Override
     public void removeTeacher(String id) {
         for(Person x: personList){
             if (Objects.equals(x.getId(), id)){
-                personList.remove(x);
-                System.out.println("Bạn đã xóa thành công\n");
+                checkYesOrNo(x);
                 return;
             }
         }
