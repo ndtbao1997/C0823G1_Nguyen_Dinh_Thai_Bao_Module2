@@ -1,47 +1,48 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.service;
 
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.IProductRepository;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.ProductRepository;
 
 public class ProductService implements IProductService {
-    private ProductRepository productRepository = new ProductRepository();
+    private IProductRepository iProductRepository = new ProductRepository();
 
     @Override
     public void addProduct(int id, String name, double price) {
-        productRepository.addProduct(id, name, price);
+        iProductRepository.addProduct(id, name, price);
     }
 
     @Override
     public boolean checkID(int id) {
-        return productRepository.checkID(id);
+        return iProductRepository.checkID(id);
     }
 
     @Override
     public void editProduct(int id, int newId, String newName, double newPrice) {
-        productRepository.editProduct(id, newId, newName, newPrice);
+        iProductRepository.editProduct(id, newId, newName, newPrice);
     }
 
     @Override
     public void removeProduct(int id) {
-        productRepository.removeProduct(id);
+        iProductRepository.removeProduct(id);
     }
 
     @Override
     public void displayProduct() {
-        productRepository.displayProduct();
+        iProductRepository.displayProduct();
     }
 
     @Override
     public void searchProductsByName(String name) {
-        productRepository.searchProductsByName(name);
+        iProductRepository.searchProductsByName(name);
     }
 
     @Override
     public void sortAscendingProduct() {
-        productRepository.sortAscendingProduct();
+        iProductRepository.sortAscendingProduct();
     }
 
     @Override
     public void sortDescendingProduct() {
-        productRepository.sortDescendingProduct();
+        iProductRepository.sortDescendingProduct();
     }
 }
