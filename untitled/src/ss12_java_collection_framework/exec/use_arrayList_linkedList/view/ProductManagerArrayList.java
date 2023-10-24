@@ -1,8 +1,6 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.view;
 
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.controller.ProductController;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.PriceComparator;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
 
 import java.util.*;
 
@@ -83,7 +81,7 @@ public class ProductManagerArrayList {
             newName = scanner.nextLine();
             System.out.println("Hãy nhập giá mới cho sản phẩm");
             newPrice = Double.parseDouble(scanner.nextLine());
-            productController.editProduct(id,newId,newName,newPrice);
+            productController.editProduct(id, newId, newName, newPrice);
         }
         System.out.println("Id bạn nhập vào không tồn tại");
     }
@@ -91,7 +89,7 @@ public class ProductManagerArrayList {
     public static void removeProduct() {
         System.out.println("Hãy nhập Id bạn muốn xóa");
         int id = Integer.parseInt(scanner.nextLine());
-        if (productController.checkID(id)){
+        if (productController.checkID(id)) {
             confirmRemove(id);
         }
         System.out.println("Id bạn nhập không tồn tại");

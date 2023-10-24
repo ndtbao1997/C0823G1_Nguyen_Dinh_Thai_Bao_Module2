@@ -2,8 +2,9 @@ package ss12_java_collection_framework.exec.use_arrayList_linkedList.service;
 
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.ProductRepository;
 
-public class ProductService implements IProductService{
-    private static ProductRepository productRepository = new ProductRepository();
+public class ProductService implements IProductService {
+    private ProductRepository productRepository = new ProductRepository();
+
     @Override
     public void addProduct(int id, String name, double price) {
         productRepository.addProduct(id, name, price);

@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductRepository implements IProductRepository{
+public class ProductRepository implements IProductRepository {
     private static List<Product> listProduct = new ArrayList<>();
 
     static {
@@ -19,8 +19,9 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public void addProduct(int id, String name, double price) {
-        listProduct.add(new Product(id,name,price));
+        listProduct.add(new Product(id, name, price));
     }
+
     @Override
     public boolean checkID(int id) {
         for (Product product : listProduct) {
@@ -33,8 +34,8 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public void editProduct(int id, int newId, String newName, double newPrice) {
-        for (Product product: listProduct){
-            if (product.getId() == id){
+        for (Product product : listProduct) {
+            if (product.getId() == id) {
                 product.setId(newId);
                 product.setName(newName);
                 product.setPrice(newPrice);
@@ -45,8 +46,8 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public void removeProduct(int id) {
-        for (Product product:listProduct){
-            if (product.getId() == id){
+        for (Product product : listProduct) {
+            if (product.getId() == id) {
                 listProduct.remove(product);
                 return;
             }
