@@ -1,7 +1,7 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.reprositories.ipml;
 
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprositories.IProductRepository;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.utils.PriceComparator;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.utils.comparator.PriceComparator;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.models.Product;
 
 import java.util.ArrayList;
