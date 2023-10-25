@@ -1,8 +1,8 @@
-package ss12_java_collection_framework.exec.use_arrayList_linkedList.controller;
+package ss12_java_collection_framework.exec.use_arrayList_linkedList.controllers;
 
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.service.IProductService;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.service.ProductService;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.models.Product;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.services.IProductService;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.services.ipml.ProductService;
 
 import java.util.List;
 
@@ -13,15 +13,15 @@ public class ProductController {
         iProductService.addProduct(product);
     }
 
-    public boolean checkID(int id) {
+    public boolean checkID(Integer id) {
         return iProductService.checkID(id);
     }
 
-    public void editProduct(int id, Product product) {
+    public void editProduct(Integer id, Product product) {
         iProductService.editProduct(id, product);
     }
 
-    public void removeProduct(int id) {
+    public void removeProduct(Integer id) {
         iProductService.removeProduct(id);
     }
 
@@ -30,8 +30,8 @@ public class ProductController {
 
     }
 
-    public void searchProductsByName(String name) {
-        iProductService.searchProductsByName(name);
+    public Product searchProductsByName(String name) {
+        return iProductService.searchProductsByName(name);
     }
 
     public void sortAscendingProduct() {

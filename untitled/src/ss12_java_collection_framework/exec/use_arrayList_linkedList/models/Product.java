@@ -1,24 +1,24 @@
-package ss12_java_collection_framework.exec.use_arrayList_linkedList.model;
+package ss12_java_collection_framework.exec.use_arrayList_linkedList.models;
 
 public class Product implements Comparable<Product> {
-    private int id;
+    private Integer id;
     private String name;
-    private double price;
+    private Long price;
 
     public Product() {
     }
 
-    public Product(int id, String name, double price) {
+    public Product(Integer id, String name, Long price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -30,26 +30,24 @@ public class Product implements Comparable<Product> {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
+        return "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+                ", price=" + price;
     }
 
 
     @Override
     public int compareTo(Product o) {
-        return Double.compare(this.getPrice(), o.getPrice());
+        return Long.compare(this.getPrice(), o.getPrice());
     }
 }

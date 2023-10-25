@@ -1,7 +1,7 @@
-package ss12_java_collection_framework.exec.use_arrayList_linkedList.view;
+package ss12_java_collection_framework.exec.use_arrayList_linkedList.views;
 
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.controller.ProductController;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.controllers.ProductController;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.models.Product;
 
 import java.util.*;
 
@@ -49,16 +49,16 @@ public class ProductManagerArrayList {
     }
 
     public static void addProduct() {
-        int id = inputID();
+        Integer id = inputID();
         System.out.println("Hãy nhập tên sản phẩm vào.");
         String name = scanner.nextLine();
         System.out.println("Hãy nhập giá sản phẩm vào");
-        double price = Double.parseDouble(scanner.nextLine());
+        Long price = Long.parseLong(scanner.nextLine());
         productController.addProduct(new Product(id, name, price));
     }
 
     private static int inputID() {
-        int id;
+        Integer id;
         do {
             System.out.println("Hãy nhập id sản phẩm vào");
             id = Integer.parseInt(scanner.nextLine());
@@ -71,14 +71,14 @@ public class ProductManagerArrayList {
 
     public static void editProduct() {
         System.out.println("Hãy nhập id bạn muốn sửa");
-        int id = Integer.parseInt(scanner.nextLine());
+        Integer id = Integer.parseInt(scanner.nextLine());
         String newName;
-        double newPrice;
+        Long newPrice;
         if (productController.checkID(id)) {
             System.out.println("Hãy nhập tên mới cho sản phẩm");
             newName = scanner.nextLine();
             System.out.println("Hãy nhập giá mới cho sản phẩm");
-            newPrice = Double.parseDouble(scanner.nextLine());
+            newPrice = Long.parseLong(scanner.nextLine());
             productController.editProduct(id, new Product(id, newName, newPrice));
         }
         System.out.println("Id bạn nhập vào không tồn tại");
@@ -86,14 +86,14 @@ public class ProductManagerArrayList {
 
     public static void removeProduct() {
         System.out.println("Hãy nhập Id bạn muốn xóa");
-        int id = Integer.parseInt(scanner.nextLine());
+        Integer id = Integer.parseInt(scanner.nextLine());
         if (productController.checkID(id)) {
             confirmRemove(id);
         }
         System.out.println("Id bạn nhập không tồn tại");
     }
 
-    private static void confirmRemove(int id) {
+    private static void confirmRemove(Integer id) {
         String choice;
         System.out.println("Hãy chắc chắn rằng bạn muốn xóa?\n" +
                 "Nhập Yes hoặc No.");
@@ -123,7 +123,11 @@ public class ProductManagerArrayList {
     public static void searchProductsByName() {
         System.out.println("Hãy nhập tên sản phẩm bạn muốn tìm");
         String name = scanner.nextLine();
-        productController.searchProductsByName(name);
+        if (productController.searchProductsByName(name) == null) {
+            System.out.println("Sản phẩm này không tồn tại.");
+        } else {
+            System.out.println(productController.searchProductsByName(name));
+        }
     }
 
     public static void sortProduct() {

@@ -1,17 +1,17 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList;
 
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.utils.PriceComparator;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.models.Product;
 
 import java.util.*;
 
 public class ProductManagerLinkedList {
-    private static Scanner scanner = new Scanner(System.in);
-    private static List<Product> listProduct = new LinkedList<>();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final List<Product> listProduct = new LinkedList<>();
     static {
-        listProduct.add(new Product(1, "Dao", 30000));
-        listProduct.add(new Product(2, "Kéo", 25000));
-        listProduct.add(new Product(3, "Chảo", 45000));
+        listProduct.add(new Product(1, "Dao", 30000L));
+        listProduct.add(new Product(2, "Kéo", 25000L));
+        listProduct.add(new Product(3, "Chảo", 45000L));
     }
     public static void main(String[] args) {
         int choice;
@@ -52,15 +52,15 @@ public class ProductManagerLinkedList {
         } while (true);
     }
     public static void addProduct() {
-        int id = inputID();
+        Integer id = inputID();
         System.out.println("Hãy nhập tên sản phẩm vào.");
         String name = scanner.nextLine();
         System.out.println("Hãy nhập giá sản phẩm vào");
-        double price = Double.parseDouble(scanner.nextLine());
+        Long price = Long.parseLong(scanner.nextLine());
         listProduct.add(new Product(id, name, price));
     }
 
-    private static int inputID() {
+    private static Integer inputID() {
         int id;
         do {
             System.out.println("Hãy nhập id sản phẩm vào");
@@ -82,17 +82,17 @@ public class ProductManagerLinkedList {
     }
     public static void editProduct() {
         System.out.println("Hãy nhập id bạn muốn sửa");
-        int id = Integer.parseInt(scanner.nextLine());
-        int newId;
+        Integer id = Integer.parseInt(scanner.nextLine());
+        Integer newId;
         String newName;
-        double newPrice;
+        long newPrice;
         for (Product product : listProduct) {
-            if (product.getId() == id) {
+            if (Objects.equals(product.getId(), id)) {
                 newId = inputID();
                 System.out.println("Hãy nhập tên mới cho sản phẩm");
                 newName = scanner.nextLine();
                 System.out.println("Hãy nhập giá mới cho sản phẩm");
-                newPrice = Double.parseDouble(scanner.nextLine());
+                newPrice = Long.parseLong(scanner.nextLine());
                 product.setId(newId);
                 product.setName(newName);
                 product.setPrice(newPrice);

@@ -1,8 +1,9 @@
-package ss12_java_collection_framework.exec.use_arrayList_linkedList.service;
+package ss12_java_collection_framework.exec.use_arrayList_linkedList.services.ipml;
 
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.IProductRepository;
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.ProductRepository;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.models.Product;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprositories.IProductRepository;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprositories.ipml.ProductRepository;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.services.IProductService;
 
 import java.util.List;
 
@@ -15,17 +16,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean checkID(int id) {
+    public boolean checkID(Integer id) {
         return iProductRepository.checkID(id);
     }
 
     @Override
-    public void editProduct(int id, Product product) {
+    public void editProduct(Integer id, Product product) {
         iProductRepository.editProduct(id, product);
     }
 
     @Override
-    public void removeProduct(int id) {
+    public void removeProduct(Integer id) {
         iProductRepository.removeProduct(id);
     }
 
@@ -35,8 +36,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void searchProductsByName(String name) {
-        iProductRepository.searchProductsByName(name);
+    public Product searchProductsByName(String name) {
+        return iProductRepository.searchProductsByName(name);
     }
 
     @Override
