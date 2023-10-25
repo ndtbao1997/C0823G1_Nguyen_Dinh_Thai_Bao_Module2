@@ -10,9 +10,10 @@ public class BinarySearch {
         int[] arrInteger;
         int value;
         do {
-            System.out.println("Hãy nhập số lượng phần tử của mảng");
+            System.out.println("Hãy nhập số lượng phần tử của mảng. \n" +
+                    "Số lượng phần tử phải lớn hơn 0.");
             arrLength = Integer.parseInt(scanner.nextLine());
-        } while (arrLength < 0);
+        } while (arrLength < 1);
         arrInteger = new int[arrLength];
         System.out.println("Hãy nhập các giá trị số nguyên cho các phần tử của mảng");
         for (int i = 0; i < arrLength; i++) {
