@@ -57,7 +57,7 @@ public class ProductManagerArrayList {
         productController.addProduct(new Product(id, name, price));
     }
 
-    private static int inputID() {
+    private static Integer inputID() {
         Integer id;
         do {
             System.out.println("Hãy nhập id sản phẩm vào");
