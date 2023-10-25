@@ -6,10 +6,16 @@ import java.util.Scanner;
 public class BinarySearch {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int[] arrInteger = new int[9];
+        int arrLength;
+        int[] arrInteger;
         int value;
+        do {
+            System.out.println("Hãy nhập số lượng phần tử của mảng");
+            arrLength = Integer.parseInt(scanner.nextLine());
+        } while (arrLength < 0);
+        arrInteger = new int[arrLength];
         System.out.println("Hãy nhập các giá trị số nguyên cho các phần tử của mảng");
-        for (int i = 0; i < arrInteger.length; i++) {
+        for (int i = 0; i < arrLength; i++) {
             System.out.println("Giá trị thứ " + (i + 1));
             arrInteger[i] = Integer.parseInt(scanner.nextLine());
         }
