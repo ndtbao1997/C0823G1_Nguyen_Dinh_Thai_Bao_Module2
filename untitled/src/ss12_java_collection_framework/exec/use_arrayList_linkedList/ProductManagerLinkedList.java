@@ -1,6 +1,6 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList;
 
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.PriceComparator;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.utils.PriceComparator;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
 
 import java.util.*;

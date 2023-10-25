@@ -1,6 +1,6 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository;
 
-import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.PriceComparator;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.utils.PriceComparator;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductRepository implements IProductRepository {
-    private static List<Product> listProduct = new ArrayList<>();
+    private static final List<Product> listProduct = new ArrayList<>();
 
     static {
         listProduct.add(new Product(1, "Dao", 30000));
@@ -18,8 +18,8 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void addProduct(int id, String name, double price) {
-        listProduct.add(new Product(id, name, price));
+    public void addProduct(Product product) {
+        listProduct.add(product);
     }
 
     @Override
@@ -33,12 +33,11 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void editProduct(int id, int newId, String newName, double newPrice) {
-        for (Product product : listProduct) {
-            if (product.getId() == id) {
-                product.setId(newId);
-                product.setName(newName);
-                product.setPrice(newPrice);
+    public void editProduct(int id, Product product) {
+        for (Product p : listProduct) {
+            if (p.getId() == id) {
+                p.setName(product.getName());
+                p.setPrice(product.getPrice());
                 return;
             }
         }
@@ -55,10 +54,8 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void displayProduct() {
-        for (Product product : listProduct) {
-            System.out.println(product);
-        }
+    public List<Product> getAll() {
+        return listProduct;
     }
 
     @Override
@@ -75,12 +72,10 @@ public class ProductRepository implements IProductRepository {
     @Override
     public void sortAscendingProduct() {
         Collections.sort(listProduct);
-        displayProduct();
     }
 
     @Override
     public void sortDescendingProduct() {
         Collections.sort(listProduct, new PriceComparator());
-        displayProduct();
     }
 }

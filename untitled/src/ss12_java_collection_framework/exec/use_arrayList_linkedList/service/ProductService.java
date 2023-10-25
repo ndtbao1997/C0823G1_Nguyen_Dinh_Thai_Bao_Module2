@@ -1,14 +1,17 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.service;
 
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.IProductRepository;
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.reprository.ProductRepository;
 
+import java.util.List;
+
 public class ProductService implements IProductService {
-    private IProductRepository iProductRepository = new ProductRepository();
+    private final IProductRepository iProductRepository = new ProductRepository();
 
     @Override
-    public void addProduct(int id, String name, double price) {
-        iProductRepository.addProduct(id, name, price);
+    public void addProduct(Product product) {
+        iProductRepository.addProduct(product);
     }
 
     @Override
@@ -17,8 +20,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void editProduct(int id, int newId, String newName, double newPrice) {
-        iProductRepository.editProduct(id, newId, newName, newPrice);
+    public void editProduct(int id, Product product) {
+        iProductRepository.editProduct(id, product);
     }
 
     @Override
@@ -27,8 +30,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void displayProduct() {
-        iProductRepository.displayProduct();
+    public List<Product> getAll() {
+        return iProductRepository.getAll();
     }
 
     @Override

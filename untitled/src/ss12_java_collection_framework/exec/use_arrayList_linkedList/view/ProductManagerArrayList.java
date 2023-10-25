@@ -1,12 +1,13 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.view;
 
 import ss12_java_collection_framework.exec.use_arrayList_linkedList.controller.ProductController;
+import ss12_java_collection_framework.exec.use_arrayList_linkedList.model.Product;
 
 import java.util.*;
 
 public class ProductManagerArrayList {
-    private static Scanner scanner = new Scanner(System.in);
-    private static ProductController productController = new ProductController();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final ProductController productController = new ProductController();
 
     public static void main(String[] args) {
         int choice;
@@ -53,7 +54,7 @@ public class ProductManagerArrayList {
         String name = scanner.nextLine();
         System.out.println("Hãy nhập giá sản phẩm vào");
         double price = Double.parseDouble(scanner.nextLine());
-        productController.addProduct(id, name, price);
+        productController.addProduct(new Product(id, name, price));
     }
 
     private static int inputID() {
@@ -71,17 +72,14 @@ public class ProductManagerArrayList {
     public static void editProduct() {
         System.out.println("Hãy nhập id bạn muốn sửa");
         int id = Integer.parseInt(scanner.nextLine());
-        int newId;
         String newName;
         double newPrice;
         if (productController.checkID(id)) {
-            System.out.println("Hãy nhập Id mới cho sản phẩm");
-            newId = inputID();
             System.out.println("Hãy nhập tên mới cho sản phẩm");
             newName = scanner.nextLine();
             System.out.println("Hãy nhập giá mới cho sản phẩm");
             newPrice = Double.parseDouble(scanner.nextLine());
-            productController.editProduct(id, newId, newName, newPrice);
+            productController.editProduct(id, new Product(id, newName, newPrice));
         }
         System.out.println("Id bạn nhập vào không tồn tại");
     }
@@ -116,7 +114,10 @@ public class ProductManagerArrayList {
     }
 
     public static void displayProduct() {
-        productController.displayProduct();
+        List<Product> productList = productController.getAll();
+        for (Product product : productList) {
+            System.out.println(product);
+        }
     }
 
     public static void searchProductsByName() {
@@ -134,9 +135,11 @@ public class ProductManagerArrayList {
             switch (choice) {
                 case 1:
                     productController.sortAscendingProduct();
+                    displayProduct();
                     return;
                 case 2:
                     productController.sortDescendingProduct();
+                    displayProduct();
                     return;
                 default:
                     System.out.println("Chỉ được nhập 1 hoặc 2.");

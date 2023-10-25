@@ -1,10 +1,12 @@
 package ss12_java_collection_framework.exec.use_arrayList_linkedList.model;
 
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product> {
     private int id;
     private String name;
     private double price;
-    public Product(){}
+
+    public Product() {
+    }
 
     public Product(int id, String name, double price) {
         this.id = id;
@@ -48,6 +50,6 @@ public class Product implements Comparable<Product>{
 
     @Override
     public int compareTo(Product o) {
-        return Double.compare(this.getPrice(),o.getPrice());
+        return Double.compare(this.getPrice(), o.getPrice());
     }
 }
