@@ -28,7 +28,7 @@ public class Triangle {
     public static void displaySidesTriangle(double a, double b, double c) throws Exception {
         boolean checkSide = (a <= 0) || (b <= 0) || (c <= 0);
         boolean checkSides = (a + b <= c) || (a + c <= b) || (c + b <= a);
-        if (checkSide) throw new IllegalTriangleException("Độ dài cạnh tam giác nhỏ hơn 1");
+        if (checkSide) throw new IllegalTriangleException("Độ dài cạnh tam giác nhỏ hơn 0");
         if (checkSides) throw new IllegalTriangleException("Độ dài ba cạnh bạn không chính xác");
         System.out.println("Độ dài 3 cạnh của tam giác là : " + a + ", " + b + ", " + c);
     }
