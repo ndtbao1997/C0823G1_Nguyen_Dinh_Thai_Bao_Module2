@@ -64,7 +64,7 @@ public class CopyFileText {
         } catch (FileAlreadyExistsException e) {
             System.err.println("File đã tồn tại");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } finally {
             try {
                 writer.close();
