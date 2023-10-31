@@ -2,10 +2,10 @@ package ss17_io_binary_file_serialization.exec.product_manager_binary_file.views
 
 import ss17_io_binary_file_serialization.exec.product_manager_binary_file.controllers.ProductsController;
 import ss17_io_binary_file_serialization.exec.product_manager_binary_file.models.Product;
-import ss17_io_binary_file_serialization.exec.product_manager_binary_file.utils.validate.ProductInformationIsIncorrect;
+import ss17_io_binary_file_serialization.exec.product_manager_binary_file.utils.validate.check_information.InformationExample;
+import ss17_io_binary_file_serialization.exec.product_manager_binary_file.utils.validate.exception.ProductInformationIsIncorrect;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class ProductManager {
@@ -83,26 +83,50 @@ public class ProductManager {
 
     private static Product inputInforProduct() throws Exception {
         System.out.println("Nhập tên sản phẩm");
-        String name = scanner.nextLine();
-        if (Objects.equals(name, "")) {
-            throw new ProductInformationIsIncorrect("Thông tin sản phẩm không đúng.");
-        }
+        String name = inputName();
         System.out.println("Nhập giá sản phẩm");
         Long price = Long.parseLong(scanner.nextLine());
         if (price <= 0) {
             throw new ProductInformationIsIncorrect("Thông tin sản phẩm không đúng");
         }
         System.out.println("Nhập hãng sản xuất");
-        String manufacturer = scanner.nextLine();
-        if (Objects.equals(manufacturer, "")) {
-            throw new ProductInformationIsIncorrect("Thông tin sản phẩm không đúng");
-        }
+        String manufacturer = inputManufacturer();
         System.out.println("Mô tả sản phẩm");
-        String describe = scanner.nextLine();
-        if (Objects.equals(describe, "")) {
-            throw new ProductInformationIsIncorrect("Thông tin sản phẩm không đúng");
-        }
+        String describe = inputDescripe();
         return new Product(name, price, manufacturer, describe);
+    }
+
+    private static String inputDescripe() {
+        String describe;
+        do {
+            describe = scanner.nextLine();
+            if (InformationExample.validateDescripe(describe)) {
+                System.out.println("Mô tả không đúng xin mời bạn nhập lại");
+            }
+        } while (InformationExample.validateDescripe(describe));
+        return describe;
+    }
+
+    private static String inputManufacturer() {
+        String manufacturer;
+        do {
+            manufacturer = scanner.nextLine();
+            if (InformationExample.validateManufacturer(manufacturer)) {
+                System.out.println("Hãng không hợp lệ. Xin mời bạn nhập lại.");
+            }
+        } while (InformationExample.validateManufacturer(manufacturer));
+        return manufacturer;
+    }
+
+    private static String inputName() {
+        String name;
+        do {
+            name = scanner.nextLine();
+            if (InformationExample.validateName(name)) {
+                System.out.println("Tên không hợp lệ. Xin mời bạn nhập lại.");
+            }
+        } while (InformationExample.validateName(name));
+        return name;
     }
 
     private static Integer inputId() throws Exception {

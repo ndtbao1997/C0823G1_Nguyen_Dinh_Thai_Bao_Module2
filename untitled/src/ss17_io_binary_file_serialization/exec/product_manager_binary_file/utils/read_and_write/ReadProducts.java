@@ -27,7 +27,9 @@ public class ReadProducts {
             exception.printStackTrace();
         } finally {
             try {
+                assert fileInputStream != null;
                 fileInputStream.close();
+                assert objectInputStream != null;
                 objectInputStream.close();
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
