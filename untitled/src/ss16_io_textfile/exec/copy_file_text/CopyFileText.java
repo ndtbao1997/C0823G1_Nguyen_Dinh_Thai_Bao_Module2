@@ -33,6 +33,7 @@ public class CopyFileText {
             System.err.println(e.getMessage());
         } finally {
             try {
+                assert br != null;
                 br.close();
             } catch (IOException ioException) {
                 System.err.println(ioException.getMessage());
@@ -67,7 +68,9 @@ public class CopyFileText {
             System.err.println(e.getMessage());
         } finally {
             try {
+                assert writer != null;
                 writer.close();
+                assert bufferedWriter != null;
                 bufferedWriter.close();
             } catch (Exception e) {
                 System.err.println(e.getMessage());
