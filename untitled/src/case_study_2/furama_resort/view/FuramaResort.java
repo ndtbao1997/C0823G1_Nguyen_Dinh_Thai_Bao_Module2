@@ -63,7 +63,7 @@ public class FuramaResort {
         }
     }
 
-    private static void displayEmployeeManagement() {
+    public static void displayEmployeeManagement() {
         int choice;
         try {
             do {
@@ -132,7 +132,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static void confirmDeleteEmployee(String employeeCode) {
+    public static void confirmDeleteEmployee(String employeeCode) {
         System.out.println("1.Đồng ý\n" +
                 "2.Hủy xóa");
         int choice;
@@ -192,7 +192,7 @@ public class FuramaResort {
         }
     }
 
-    private static void addNewEmployee() {
+    public static void addNewEmployee() {
         Person person;
         String employeeCode;
         String level;
@@ -211,7 +211,7 @@ public class FuramaResort {
         }
     }
 
-    private static Person inputPersonInfor() {
+    public static Person inputPersonInfor() {
         String gender;
         String name;
         String email;
@@ -227,7 +227,7 @@ public class FuramaResort {
         return new Person(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
     }
 
-    private static Integer inputEmployeeWage() {
+    public static Integer inputEmployeeWage() {
         System.out.println("Nhập lương nhân viên");
         Integer wage;
         do {
@@ -240,7 +240,7 @@ public class FuramaResort {
         return wage;
     }
 
-    private static String inputEmployeeLocation() {
+    public static String inputEmployeeLocation() {
         int choice;
         System.out.println("Chọn cấp bậc nhân viên.\n" +
                 "1. Lễ tân\n" +
@@ -270,7 +270,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputEmployeeLevel() {
+    public static String inputEmployeeLevel() {
         int choice;
         System.out.println("Chọn level nhân viên:\n" +
                 "1.Trung Cấp\n" +
@@ -294,7 +294,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputEmployeeCode() {
+    public static String inputEmployeeCode() {
         String employeeCode;
         System.out.println("Nhập mã nhân viên");
         do {
@@ -309,7 +309,7 @@ public class FuramaResort {
         return employeeCode;
     }
 
-    private static String inputPersonEmail() {
+    public static String inputPersonEmail() {
         String email;
         System.out.println("Nhập email:");
         do {
@@ -322,7 +322,7 @@ public class FuramaResort {
         return email;
     }
 
-    private static String inputPersonPhoneNumber() {
+    public static String inputPersonPhoneNumber() {
         String phoneNumber;
         System.out.println("Nhập số điện thoại");
         do {
@@ -335,7 +335,7 @@ public class FuramaResort {
         return phoneNumber;
     }
 
-    private static String inputPersonNumberCmnd() {
+    public static String inputPersonNumberCmnd() {
         String numberCMND;
         System.out.println("Nhập CMND:");
         do {
@@ -349,7 +349,7 @@ public class FuramaResort {
         return numberCMND;
     }
 
-    private static String inputPersonGender() {
+    public static String inputPersonGender() {
         System.out.println("Chọn giới tính.\n" +
                 "1.Nam\n" +
                 "2.Nữ");
@@ -367,7 +367,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputPersonDateOfBirth() {
+    public static String inputPersonDateOfBirth() {
         String dateOfBirth;
         System.out.println("Nhập ngày tháng năm sinh:");
         do {
@@ -380,7 +380,7 @@ public class FuramaResort {
         return dateOfBirth;
     }
 
-    private static String inputPersonName() {
+    public static String inputPersonName() {
         String name;
         System.out.println("Nhập tên:");
         do {
@@ -431,7 +431,7 @@ public class FuramaResort {
         }
     }
 
-    private static void searchCustomerByName() {
+    public static void searchCustomerByName() {
         System.out.println("Hãy nhập tên khách hàng bạn muốn tìm:");
         String name = scanner.nextLine();
         List<Customer> customerList = customerController.searchObjectByName(name);
@@ -444,7 +444,7 @@ public class FuramaResort {
         }
     }
 
-    private static void deleteCustomer() {
+    public static void deleteCustomer() {
         System.out.println("Hãy nhập mã khách hàng bạn muốn xóa:");
         String customerCode;
         do {
@@ -459,7 +459,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static void confirmDeleteCustomer(String customerCode) {
+    public static void confirmDeleteCustomer(String customerCode) {
         int choice;
         System.out.println("1.Xóa khách hàng\n" +
                 "2.Hủy xóa");
@@ -479,7 +479,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static void editCustomer() {
+    public static void editCustomer() {
         System.out.println("Nhập mã khách hàng cần sữa:");
         Person person;
         String customerCode;
@@ -506,7 +506,7 @@ public class FuramaResort {
         }
     }
 
-    private static void addNewCustomer() {
+    public static void addNewCustomer() {
         Person person;
         String customerCode;
         String guestType;
@@ -523,7 +523,7 @@ public class FuramaResort {
         }
     }
 
-    private static String getAddress(String guestType) {
+    public static String getAddress(String guestType) {
         String address = null;
         switch (guestType) {
             case "Diamond":
@@ -545,7 +545,7 @@ public class FuramaResort {
         return address;
     }
 
-    private static String inputGuestType() {
+    public static String inputGuestType() {
         int choice;
         System.out.println("Hãy chọn loại khách hàng\n" +
                 "1.Diamond\n" +
@@ -573,7 +573,7 @@ public class FuramaResort {
 
     }
 
-    private static String inputCustomerCode() {
+    public static String inputCustomerCode() {
         String customerCode;
         System.out.println("Nhập mã khách hàng");
         do {
@@ -598,7 +598,7 @@ public class FuramaResort {
         }
     }
 
-    private static void displayFacilityManagement() {
+    public static void displayFacilityManagement() {
         int choice;
         try {
             do {
@@ -630,7 +630,7 @@ public class FuramaResort {
         }
     }
 
-    private static void displayListFacility() {
+    public static void displayListFacility() {
         Map<Facility, Integer> facilityIntegerMap = facilityController.getAll();
         Set<Facility> keySet = facilityIntegerMap.keySet();
         if (facilityIntegerMap.isEmpty()) {
@@ -642,7 +642,7 @@ public class FuramaResort {
         }
     }
 
-    private static void addNewFacility() {
+    public static void addNewFacility() {
         System.out.println("1.Add New Villa\n" +
                 "2.Add New House\n" +
                 "3.Add New Room\n" +
@@ -667,7 +667,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static void addNewHouse() {
+    public static void addNewHouse() {
         String roomStandards;
         Integer numberOfFloors;
         Facility facility;
@@ -683,7 +683,7 @@ public class FuramaResort {
         }
     }
 
-    private static void addNewVilla() {
+    public static void addNewVilla() {
         String roomStandards;
         Integer numberOfFloors;
         Double swimmingPoolArea;
@@ -703,7 +703,7 @@ public class FuramaResort {
         }
     }
 
-    private static Double inputVilaSwimmingPoolArea() {
+    public static Double inputVilaSwimmingPoolArea() {
         Double swimmingPoolArea;
         System.out.println("Nhập diện tích hồ bơi");
         do {
@@ -716,7 +716,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static Integer inputVillaAndHouseNumberOfFloors() {
+    public static Integer inputVillaAndHouseNumberOfFloors() {
         Integer numberOfFloors;
         System.out.println("Nhập số tầng");
         do {
@@ -729,7 +729,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputVillaAndHouseRoomStandards() {
+    public static String inputVillaAndHouseRoomStandards() {
         String roomStandards;
         System.out.println("Nhập tiêu chuẩn phòng:");
         do {
@@ -743,7 +743,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static Facility inputFacilityInfor() {
+    public static Facility inputFacilityInfor() {
         String serviceCode = inputFacilityCode();
         String serviceName = inputFacilityName();
         Double usableArea = inputFacilityUsableArea();
@@ -753,7 +753,7 @@ public class FuramaResort {
         return new Facility(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
     }
 
-    private static String inputFacilityRentalType() {
+    public static String inputFacilityRentalType() {
         int choice;
         System.out.println("Hãy chọn kiểu thuê:\n" +
                 "1.Năm\n" +
@@ -777,7 +777,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static Integer inputFacilityMaxPeople() {
+    public static Integer inputFacilityMaxPeople() {
         Integer maxPeople;
         System.out.println("Nhập số lượng người tối đa");
         do {
@@ -790,7 +790,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static Double inputFacilityRentalCode() {
+    public static Double inputFacilityRentalCode() {
         Double rentalCosts;
         System.out.println("Nhập chi phí thuê");
         do {
@@ -803,7 +803,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static Double inputFacilityUsableArea() {
+    public static Double inputFacilityUsableArea() {
         Double usableArea;
         System.out.println("Nhập diện tích sử dụng");
         do {
@@ -816,7 +816,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputFacilityName() {
+    public static String inputFacilityName() {
         String serviceName;
         System.out.println("Nhập tên dịch vụ:");
         do {
@@ -827,7 +827,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static String inputFacilityCode() {
+    public static String inputFacilityCode() {
         String serviceCode;
         System.out.println("Nhập mã dịch vụ");
         do {
@@ -841,7 +841,7 @@ public class FuramaResort {
         } while (true);
     }
 
-    private static void displayBookingManagement() {
+    public static void displayBookingManagement() {
         int choice;
         try {
             do {
@@ -874,7 +874,7 @@ public class FuramaResort {
         }
     }
 
-    private static void displayPromotionManagement() {
+    public static void displayPromotionManagement() {
         int choice;
         try {
             do {
