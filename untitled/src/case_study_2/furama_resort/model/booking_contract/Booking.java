@@ -1,15 +1,17 @@
 package case_study_2.furama_resort.model.booking_contract;
 
-public class Booking {
-    private Integer bookingCode;
+public class Booking implements Comparable<Booking>{
+    private String bookingCode;
     private String dateBooking;
     private String rentalStartDate;
     private String rentalEndDate;
-    private Integer customerCode;
-    private Integer facilityCode;
-    public Booking(){}
+    private String customerCode;
+    private String facilityCode;
 
-    public Booking(Integer bookingCode, String dateBooking, String rentalStartDate, String rentalEndDate, Integer customerCode, Integer facilityCode) {
+    public Booking() {
+    }
+
+    public Booking(String bookingCode, String dateBooking, String rentalStartDate, String rentalEndDate, String customerCode, String facilityCode) {
         this.bookingCode = bookingCode;
         this.dateBooking = dateBooking;
         this.rentalStartDate = rentalStartDate;
@@ -18,11 +20,11 @@ public class Booking {
         this.facilityCode = facilityCode;
     }
 
-    public Integer getBookingCode() {
+    public String getBookingCode() {
         return bookingCode;
     }
 
-    public void setBookingCode(Integer bookingCode) {
+    public void setBookingCode(String bookingCode) {
         this.bookingCode = bookingCode;
     }
 
@@ -50,31 +52,55 @@ public class Booking {
         this.rentalEndDate = rentalEndDate;
     }
 
-    public Integer getCustomerCode() {
+    public String getCustomerCode() {
         return customerCode;
     }
 
-    public void setCustomerCode(Integer customerCode) {
+    public void setCustomerCode(String customerCode) {
         this.customerCode = customerCode;
     }
 
-    public Integer getFacilityCode() {
+    public String getFacilityCode() {
         return facilityCode;
     }
 
-    public void setFacilityCode(Integer facilityCode) {
+    public void setFacilityCode(String facilityCode) {
         this.facilityCode = facilityCode;
     }
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "bookingCode=" + bookingCode +
-                ", dateBooking='" + dateBooking + '\'' +
-                ", rentalStartDate='" + rentalStartDate + '\'' +
-                ", rentalEndDate='" + rentalEndDate + '\'' +
-                ", customerCode=" + customerCode +
-                ", facilityCode=" + facilityCode +
-                '}';
+        return bookingCode + ',' + dateBooking + ',' +
+                rentalStartDate + ',' + rentalEndDate + ',' +
+                customerCode + ',' + facilityCode;
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+        String[] str1 = this.getRentalStartDate().split("/");
+        String[] str2 = o.getRentalStartDate().split("/");
+        String[] str3 = this.getRentalEndDate().split("/");
+        String[] str4 = o.getRentalEndDate().split("/");
+        if (Integer.parseInt(str1[2]) != Integer.parseInt(str2[2])){
+            return Integer.compare(Integer.parseInt(str1[2]), Integer.parseInt(str2[1]));
+        } else {
+            if (Integer.parseInt(str1[1]) != Integer.parseInt(str2[1])) {
+                return Integer.compare(Integer.parseInt(str1[1]), Integer.parseInt(str2[1]));
+            } else {
+                if (Integer.parseInt(str1[0]) != Integer.parseInt(str2[0])) {
+                    return Integer.compare(Integer.parseInt(str1[0]), Integer.parseInt(str2[0]));
+                } else {
+                    if (Integer.parseInt(str3[2]) != Integer.parseInt(str4[2])) {
+                        return Integer.compare(Integer.parseInt(str3[2]), Integer.parseInt(str4[2]));
+                    } else {
+                        if (Integer.parseInt(str3[1]) != Integer.parseInt(str4[1])) {
+                            return Integer.compare(Integer.parseInt(str3[1]), Integer.parseInt(str4[1]));
+                        } else {
+                            return Integer.compare(Integer.parseInt(str3[2]), Integer.parseInt(str4[2]));
+                        }
+                    }
+                }
+            }
+        }
     }
 }

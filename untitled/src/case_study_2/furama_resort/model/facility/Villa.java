@@ -18,6 +18,11 @@ public class Villa extends House{
         this.swimmingPoolArea = swimmingPoolArea;
     }
 
+    public Villa(Integer numberOfUses, String serviceCode, String serviceName, Double usableArea, Double rentalCosts, Integer maxPeople, String rentalType, String roomStandards, Integer numberOfFloors, Double swimmingPoolArea) {
+        super(numberOfUses, serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType, roomStandards, numberOfFloors);
+        this.swimmingPoolArea = swimmingPoolArea;
+    }
+
     public Double getSwimmingPoolArea() {
         return swimmingPoolArea;
     }
@@ -28,6 +33,6 @@ public class Villa extends House{
 
     @Override
     public String toString() {
-        return super.toString() + ", swimmingPoolArea='" + swimmingPoolArea + '\'';
+        return super.toString() + "," + swimmingPoolArea;
     }
 }

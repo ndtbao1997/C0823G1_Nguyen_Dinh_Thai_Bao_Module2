@@ -3,21 +3,31 @@ package case_study_2.furama_resort.repository.impl;
 import case_study_2.furama_resort.model.person.Employee;
 import case_study_2.furama_resort.model.person.Person;
 import case_study_2.furama_resort.repository.IEmployeeRepository;
-import case_study_2.furama_resort.untils.read_and_write.ReadFileEmployee;
-import case_study_2.furama_resort.untils.read_and_write.WriteFileEmployee;
+import case_study_2.furama_resort.untils.read_and_write.ReadFile;
+import case_study_2.furama_resort.untils.read_and_write.WriteFile;
 
-import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class EmployeeReporitory implements IEmployeeRepository {
+    private static final String PATH = "src/case_study_2/furama_resort/data/data_employee.csv";
     public List<Employee> getListEmployee(){
+        List<String> strings = ReadFile.readFile(PATH);
+        String[] stringArr;
+        Employee employee;
         List<Employee> employeeList = new ArrayList<>();
-        if (ReadFileEmployee.checkData()){
-            return ReadFileEmployee.readFile();
+        if (strings.isEmpty()){
+            return  employeeList;
+        } else {
+            for (String s:strings){
+                stringArr = s.split(",");
+                employee = new Employee(stringArr[0], stringArr[1], stringArr[2], stringArr[3], stringArr[4],
+                        stringArr[5], stringArr[6], stringArr[7], stringArr[8], Integer.parseInt(stringArr[9]));
+                employeeList.add(employee);
+            }
         }
-        return  employeeList;
+        return employeeList;
     }
 
 
@@ -32,7 +42,7 @@ public class EmployeeReporitory implements IEmployeeRepository {
         employeeList.add(new Employee(person.getName(), person.getDateOfBirth(), person.getGender(),
                 person.getNumberCMND(), person.getPhoneNumber(), person.getEmail(),
                 employee.getEmployeeCode(), employee.getLevel(), employee.getLocation(), employee.getWage()));
-        WriteFileEmployee.writeToFile(employeeList);
+        WriteFile.WriteToFile(employeeList,PATH);
     }
 
     @Override
@@ -60,7 +70,7 @@ public class EmployeeReporitory implements IEmployeeRepository {
                 employee1.setLevel(employee.getLevel());
                 employee1.setLocation(employee.getLocation());
                 employee1.setWage(employee.getWage());
-                WriteFileEmployee.writeToFile(employeeList);
+                WriteFile.WriteToFile(employeeList,PATH);
                 return;
             }
         }
@@ -72,7 +82,7 @@ public class EmployeeReporitory implements IEmployeeRepository {
         for (Employee employee:employeeList){
             if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
                 employeeList.remove(employee);
-                WriteFileEmployee.writeToFile(employeeList);
+                WriteFile.WriteToFile(employeeList,PATH);
                 return;
             }
         }

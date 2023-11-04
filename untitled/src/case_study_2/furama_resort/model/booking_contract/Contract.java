@@ -2,12 +2,14 @@ package case_study_2.furama_resort.model.booking_contract;
 
 public class Contract {
     private String someContracts;
-    private Integer bookingCode;
+    private String bookingCode;
     private Long advanceDepositAmount;
     private Long totalPaymentAmount;
-    public Contract(){}
 
-    public Contract(String someContracts, Integer bookingCode, Long advanceDepositAmount, Long totalPaymentAmount) {
+    public Contract() {
+    }
+
+    public Contract(String someContracts, String bookingCode, Long advanceDepositAmount, Long totalPaymentAmount) {
         this.someContracts = someContracts;
         this.bookingCode = bookingCode;
         this.advanceDepositAmount = advanceDepositAmount;
@@ -22,11 +24,11 @@ public class Contract {
         this.someContracts = someContracts;
     }
 
-    public Integer getBookingCode() {
+    public String getBookingCode() {
         return bookingCode;
     }
 
-    public void setBookingCode(Integer bookingCode) {
+    public void setBookingCode(String bookingCode) {
         this.bookingCode = bookingCode;
     }
 
@@ -48,11 +50,7 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract{" +
-                "someContracts='" + someContracts + '\'' +
-                ", bookingCode=" + bookingCode +
-                ", advanceDepositAmount=" + advanceDepositAmount +
-                ", totalPaymentAmount=" + totalPaymentAmount +
-                '}';
+        return someContracts + "," + bookingCode + "," +
+                advanceDepositAmount + "," + totalPaymentAmount;
     }
 }

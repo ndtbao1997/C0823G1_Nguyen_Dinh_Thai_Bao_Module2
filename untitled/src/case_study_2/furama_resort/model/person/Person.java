@@ -65,14 +65,8 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", gender='" + gender + '\'' +
-                ", numberCMND='" + numberCMND + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'';
+        return  name + "," + dateOfBirth + "," + gender + "," + numberCMND + "," + phoneNumber + "," + email;
     }
 }

@@ -1,2 +1,6 @@
-SVVL-0001,Villa,32.0,500000.0,5,Giờ,Ba sao,5,52.0,0
-SVHO-0001,House,50.0,500000.0,2,Giờ,Ba sao,5,0
+0,SVHO-0001,House,50.0,500000.0,2,Giờ,Ba sao,5
+0,SVRO-0001,Room,36.0,250000.0,4,Năm,Dịch vụ tham gia đánh Gôn
+2,SVVL-0002,Villa,100.0,2000000.0,16,Năm,Bốn sao,6,32.0
+5,SVHO-0002,House,95.0,2300000.0,12,Năm,Bốn sao,4
+2,SVRO-0002,Room,35.0,150000.0,4,Năm,Dịch vụ câu cá thư giãn
+1,SVVL-0003,Villa,50.0,600000.0,4,Tháng,Ba sao,4,32.0

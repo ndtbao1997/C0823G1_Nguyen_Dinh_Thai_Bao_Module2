@@ -53,12 +53,8 @@ public class Employee extends Person{
     public void setWage(Integer wage) {
         this.wage = wage;
     }
-
     @Override
     public String toString() {
-        return "employeeCode='" + employeeCode + '\'' +
-                ", level='" + level + '\'' +
-                ", location='" + location + '\'' +
-                ", wage='" + wage + '\'' + ", " + super.toString();
+        return super.toString() + ","+ employeeCode + "," + level + "," + location + "," + wage;
     }
 }

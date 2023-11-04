@@ -1,20 +1,49 @@
 package case_study_2.furama_resort.repository.impl;
 
+import case_study_2.furama_resort.model.booking_contract.Booking;
 import case_study_2.furama_resort.model.person.Customer;
 import case_study_2.furama_resort.model.person.Person;
 import case_study_2.furama_resort.repository.ICustomerRepository;
-import case_study_2.furama_resort.untils.read_and_write.ReadFileCustomer;
-import case_study_2.furama_resort.untils.read_and_write.WriteFileCustomer;
+import case_study_2.furama_resort.untils.comparator.PromotionComparator;
+import case_study_2.furama_resort.untils.read_and_write.ReadFile;
+import case_study_2.furama_resort.untils.read_and_write.WriteFile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+
+import java.util.*;
 
 public class CustomerRepository implements ICustomerRepository {
-    public List<Customer> getListCustomer() {
+    private static final String PATH = "src/case_study_2/furama_resort/data/data_customer.csv";
+    public static Set<Customer> getListCustomerBookingYear(Set<Booking> bookingListYear) {
+        List<Customer> customerList = getListCustomer();
+        Customer newCustomer;
+        Set<Customer> customerSet = new TreeSet<>(new PromotionComparator());
+        for (Booking booking:bookingListYear){
+            for (Customer customer:customerList){
+                if (Objects.equals(customer.getCustomerCode(), booking.getCustomerCode())){
+                    newCustomer = new Customer(customer.getName(),customer.getDateOfBirth(),customer.getGender(),
+                            customer.getNumberCMND(), customer.getPhoneNumber(), customer.getEmail(), customer.getCustomerCode(),
+                            customer.getGuestType(), customer.getAddress(),booking.getDateBooking());
+                    customerSet.add(newCustomer);
+                }
+            }
+        }
+        return customerSet;
+    }
+
+    public static List<Customer> getListCustomer() {
+        List<String> strings = ReadFile.readFile(PATH);
         List<Customer> customerList = new ArrayList<>();
-        if (ReadFileCustomer.checkData()) {
-            return ReadFileCustomer.readFile();
+        String[] stringArr;
+        Customer customer;
+        if (strings.isEmpty()){
+            return customerList;
+        } else {
+            for (String s:strings){
+                stringArr = s.split(",");
+                customer = new Customer(stringArr[0], stringArr[1], stringArr[2], stringArr[3], stringArr[4],
+                        stringArr[5], stringArr[6], stringArr[7], stringArr[8]);
+                customerList.add(customer);
+            }
         }
         return customerList;
     }
@@ -41,7 +70,7 @@ public class CustomerRepository implements ICustomerRepository {
         customerList.add(new Customer(person.getName(), person.getDateOfBirth(), person.getGender(), person.getNumberCMND(),
                 person.getPhoneNumber(), person.getEmail(), customer.getCustomerCode(),
                 customer.getGuestType(), customer.getAddress()));
-        WriteFileCustomer.writeToFile(customerList);
+        WriteFile.WriteToFile(customerList,PATH);
     }
 
     @Override
@@ -57,7 +86,7 @@ public class CustomerRepository implements ICustomerRepository {
                 customer1.setEmail(person.getEmail());
                 customer1.setGuestType(customer.getGuestType());
                 customer1.setAddress(customer.getAddress());
-                WriteFileCustomer.writeToFile(customerList);
+                WriteFile.WriteToFile(customerList,PATH);
                 return;
             }
         }
@@ -69,7 +98,7 @@ public class CustomerRepository implements ICustomerRepository {
         for (Customer customer:customerList){
             if (Objects.equals(customer.getCustomerCode(), customerCode)){
                 customerList.remove(customer);
-                WriteFileCustomer.writeToFile(customerList);
+                WriteFile.WriteToFile(customerList,PATH);
                 return;
             }
         }

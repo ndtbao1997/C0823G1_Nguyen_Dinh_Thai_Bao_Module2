@@ -26,4 +26,25 @@ public class FacilityService implements IFacilityService {
     public boolean checkObjectCode(String serviceCode) {
         return iFacilityRepository.checkObjectCode(serviceCode);
     }
+
+    @Override
+    public Map<Facility, Integer> getFacilityMaintenance() {
+        return iFacilityRepository.getFacilityMaintenance();
+    }
+
+    @Override
+    public void deleteObject(String serviceCode) {
+        iFacilityRepository.deleteObject(serviceCode);
+    }
+
+    @Override
+    public void addObject(String facilityCode) {
+        iFacilityRepository.addObject(facilityCode);
+    }
+
+    @Override
+    public boolean checkRepair(String facilityCode) {
+        return iFacilityRepository.checkRepair(facilityCode);
+    }
+
 }
