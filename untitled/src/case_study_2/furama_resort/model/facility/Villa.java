@@ -1,8 +1,10 @@
 package case_study_2.furama_resort.model.facility;
 
-public class Villa extends House{
+public class Villa extends House {
     private Double swimmingPoolArea;
-    public Villa(){}
+
+    public Villa() {
+    }
 
     public Villa(Double swimmingPoolArea) {
         this.swimmingPoolArea = swimmingPoolArea;
@@ -21,6 +23,10 @@ public class Villa extends House{
     public Villa(Integer numberOfUses, String serviceCode, String serviceName, Double usableArea, Double rentalCosts, Integer maxPeople, String rentalType, String roomStandards, Integer numberOfFloors, Double swimmingPoolArea) {
         super(numberOfUses, serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType, roomStandards, numberOfFloors);
         this.swimmingPoolArea = swimmingPoolArea;
+    }
+
+    public Villa(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, Integer maxPeople, String rentalType) {
+        super(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
     }
 
     public Double getSwimmingPoolArea() {

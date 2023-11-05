@@ -18,6 +18,7 @@ public class BookingAndContractManager {
     private static final FacilityController facilityController = new FacilityController();
     private static final BookingController bookingController = new BookingController();
     private static final ContactController contactController = new ContactController();
+
     public static void displayBookingManagement() {
         int choice;
         try {
@@ -56,7 +57,7 @@ public class BookingAndContractManager {
         }
     }
 
-    private static void editContracts() {
+    public static void editContracts() {
         String someContract;
         Long advanceDepositAmount;
         Long totalPaymentAmount;
@@ -65,25 +66,24 @@ public class BookingAndContractManager {
         do {
             try {
                 someContract = scanner.nextLine();
-                if (BookingInforExample.validateSomeContracts(someContract)&& contactController.checkObjectCode(someContract)){
+                if (BookingInforExample.validateSomeContracts(someContract) && contactController.checkObjectCode(someContract)) {
                     bookingCode = contactController.getBookingCode(someContract);
                     advanceDepositAmount = inputAdvanceDepositAmount(bookingCode);
                     totalPaymentAmount = inputTotalPaymentAmount(bookingCode);
-                    contactController.editObject(new Contract(someContract,bookingCode,advanceDepositAmount,totalPaymentAmount));
+                    contactController.editObject(new Contract(someContract, bookingCode, advanceDepositAmount, totalPaymentAmount));
                     System.out.println("Bạn đã sửa thành công");
                     return;
-                }
-                else {
+                } else {
                     System.out.println("Không hợp lệ hoặc không tồn tại!\n" +
                             "Xin nhập lại");
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }while (true);
+        } while (true);
     }
 
-    private static void displayListContracts() {
+    public static void displayListContracts() {
         List<Contract> contractList = contactController.getAll();
         if (contractList.isEmpty()) {
             System.out.println("Hiện tại không có hợp đồng nào cả");
@@ -97,7 +97,7 @@ public class BookingAndContractManager {
         }
     }
 
-    private static void createNewcontracts() {
+    public static void createNewcontracts() {
         Queue<Booking> bookingQueue = bookingController.getBookingVillaAndHouse();
         String someContracts;
         String bookingCode;
@@ -106,7 +106,7 @@ public class BookingAndContractManager {
         while (!bookingQueue.isEmpty()) {
             try {
                 bookingCode = bookingQueue.peek().getBookingCode();
-                if (contactController.checkObjectCode(bookingCode)){
+                if (contactController.checkObjectCode(bookingCode)) {
                     bookingQueue.poll();
                 } else {
                     someContracts = inputSomeContracts(bookingCode);
@@ -115,14 +115,14 @@ public class BookingAndContractManager {
                     contactController.addObject(new Contract(someContracts, bookingCode, advanceDepositAmount, totalPaymentAmount));
                     bookingQueue.poll();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         System.out.println("Tất cả hợp đồng đã hoàn tất");
     }
 
-    private static Long inputTotalPaymentAmount(String bookingCode) {
+    public static Long inputTotalPaymentAmount(String bookingCode) {
         Long advanceDepositAmount;
         System.out.println("Nhập tổng số tiền thanh toán (phải lớn hơn 0) của: " + bookingCode);
         do {
@@ -134,7 +134,7 @@ public class BookingAndContractManager {
         return advanceDepositAmount;
     }
 
-    private static Long inputAdvanceDepositAmount(String bookingCode) {
+    public static Long inputAdvanceDepositAmount(String bookingCode) {
         Long advanceDepositAmount;
         System.out.println("Nhập số tiền thanh toán trước (phải lớn hơn 0) của: " + bookingCode);
         do {
@@ -146,7 +146,7 @@ public class BookingAndContractManager {
         return advanceDepositAmount;
     }
 
-    private static String inputSomeContracts(String bookingCode) {
+    public static String inputSomeContracts(String bookingCode) {
         String someContracts;
         System.out.println("Hãy nhập số hợp đồng(Phải có 5 chữ số) của: " + bookingCode);
         do {
@@ -160,7 +160,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static void distplayListBooking() {
+    public static void distplayListBooking() {
         Set<Booking> bookingSet = bookingController.getAll();
         if (bookingSet.isEmpty()) {
             System.out.println("Hiện tại không có Booking nào cả!");
@@ -176,7 +176,7 @@ public class BookingAndContractManager {
         }
     }
 
-    private static void addNewBooking() {
+    public static void addNewBooking() {
         String bookingCode;
         String dateBooking;
         String rentalStartDate;
@@ -202,7 +202,7 @@ public class BookingAndContractManager {
         }
     }
 
-    private static String inputRentalEndDate(String rentalStartDate) {
+    public static String inputRentalEndDate(String rentalStartDate) {
         String rentalEndDate;
         System.out.println("Nhập ngày kết thúc:");
         do {
@@ -216,7 +216,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static String inputRentalStarDate(String dateBooking) {
+    public static String inputRentalStarDate(String dateBooking) {
         String rentalStartDate;
         System.out.println("Nhập ngày bắt đầu");
         do {
@@ -230,7 +230,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static String inputDateBooking() {
+    public static String inputDateBooking() {
         String dateBooking;
         System.out.println("Nhập ngày booking");
         do {
@@ -244,7 +244,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static String inputBookingCode() {
+    public static String inputBookingCode() {
         String bookingCode;
         System.out.println("Hãy nhập mã Booking");
         do {
@@ -258,7 +258,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static String inputFacilityCodeBooking() {
+    public static String inputFacilityCodeBooking() {
         String facilityCode;
         System.out.println("Nhập mã dịch vụ");
         do {
@@ -274,7 +274,7 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    private static String inputCustomerCodeBooking() {
+    public static String inputCustomerCodeBooking() {
         String customerCode;
         System.out.println("Hãy nhập mã khách hàng!");
         do {

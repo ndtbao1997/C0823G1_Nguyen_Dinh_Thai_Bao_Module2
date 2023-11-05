@@ -8,10 +8,11 @@ import case_study_2.furama_resort.service.IContactService;
 import java.util.List;
 
 public class ContactService implements IContactService {
-private final IContactRepository iContactRepository= new ContactRepository();
+    private final IContactRepository iContactRepository = new ContactRepository();
+
     @Override
     public void addObject(Contract contract) {
-       iContactRepository.addObject(contract);
+        iContactRepository.addObject(contract);
     }
 
     @Override

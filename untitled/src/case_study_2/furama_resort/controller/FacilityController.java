@@ -4,7 +4,6 @@ import case_study_2.furama_resort.model.facility.Facility;
 import case_study_2.furama_resort.service.IFacilityService;
 import case_study_2.furama_resort.service.ipml.FacilityService;
 
-import java.util.List;
 import java.util.Map;
 
 public class FacilityController {

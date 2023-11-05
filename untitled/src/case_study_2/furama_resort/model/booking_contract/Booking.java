@@ -1,6 +1,6 @@
 package case_study_2.furama_resort.model.booking_contract;
 
-public class Booking implements Comparable<Booking>{
+public class Booking implements Comparable<Booking> {
     private String bookingCode;
     private String dateBooking;
     private String rentalStartDate;
@@ -77,11 +77,11 @@ public class Booking implements Comparable<Booking>{
 
     @Override
     public int compareTo(Booking o) {
-        String[] str1 = this.getRentalStartDate().split("/");
-        String[] str2 = o.getRentalStartDate().split("/");
+        String[] str1 = this.getDateBooking().split("/");
+        String[] str2 = o.getDateBooking().split("/");
         String[] str3 = this.getRentalEndDate().split("/");
         String[] str4 = o.getRentalEndDate().split("/");
-        if (Integer.parseInt(str1[2]) != Integer.parseInt(str2[2])){
+        if (Integer.parseInt(str1[2]) != Integer.parseInt(str2[2])) {
             return Integer.compare(Integer.parseInt(str1[2]), Integer.parseInt(str2[1]));
         } else {
             if (Integer.parseInt(str1[1]) != Integer.parseInt(str2[1])) {

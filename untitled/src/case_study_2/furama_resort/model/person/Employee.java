@@ -1,11 +1,13 @@
 package case_study_2.furama_resort.model.person;
 
-public class Employee extends Person{
+public class Employee extends Person {
     private String employeeCode;
     private String level;
     private String location;
     private Integer wage;
-    public Employee(){}
+
+    public Employee() {
+    }
 
     public Employee(String employeeCode, String level, String location, Integer wage) {
         this.employeeCode = employeeCode;
@@ -20,6 +22,10 @@ public class Employee extends Person{
         this.level = level;
         this.location = location;
         this.wage = wage;
+    }
+
+    public Employee(String name, String dateOfBirth, String gender, String numberCMND, String phoneNumber, String email) {
+        super(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
     }
 
     public String getEmployeeCode() {
@@ -53,8 +59,9 @@ public class Employee extends Person{
     public void setWage(Integer wage) {
         this.wage = wage;
     }
+
     @Override
     public String toString() {
-        return super.toString() + ","+ employeeCode + "," + level + "," + location + "," + wage;
+        return super.toString() + "," + employeeCode + "," + level + "," + location + "," + wage;
     }
 }

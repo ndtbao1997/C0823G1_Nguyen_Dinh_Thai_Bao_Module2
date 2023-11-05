@@ -1,5 +1,6 @@
 package case_study_2.furama_resort.untils.validate;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,62 +13,71 @@ public class PersonInforExample {
     private static final String EMAIL_REGEX = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
     private static final String EMPLOYEE_CODE_REGEX = "^NV-\\d{4}$";
     private static final String CUSTOMER_CODE_REGEX = "^KH-\\d{4}$";
-    public static boolean validateName(String name){
+
+    public static boolean validateName(String name) {
         Pattern pattern = Pattern.compile(NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
     }
-    public static boolean validateNumberCmnd(String numberCMND){
+
+    public static boolean validateNumberCmnd(String numberCMND) {
         Pattern pattern1 = Pattern.compile(NUMBER_CMND1_REGEX);
         Matcher matcher1 = pattern1.matcher(numberCMND);
         Pattern pattern2 = Pattern.compile(NUMBER_CMND2_REGEX);
         Matcher matcher2 = pattern2.matcher(numberCMND);
         return matcher1.matches() || matcher2.matches();
     }
-    public static boolean validateDateOfBirth(String dateOfBirth){
+
+    public static boolean validateDateOfBirth(String dateOfBirth) {
         Pattern pattern = Pattern.compile(DATE_OF_BIRTH_REGEX);
         Matcher matcher = pattern.matcher(dateOfBirth);
-        if (matcher.matches()){
+        if (matcher.matches()) {
             return checkAge(dateOfBirth);
         }
         return false;
     }
 
     private static boolean checkAge(String dateOfBirth) {
+        String[] date = String.valueOf(LocalDate.now()).split("-");
         String[] age = dateOfBirth.split("/");
         int day = Integer.parseInt(age[0]);
         int month = Integer.parseInt(age[1]);
         int year = Integer.parseInt(age[2]);
-        if (2023 - year >= 19){
+        if (Integer.parseInt(date[0]) - year >= 19) {
             return true;
-        } else if (2023 - year == 18){
-            if (11 > month){
+        } else if (Integer.parseInt(date[0]) - year == 18) {
+            if (Integer.parseInt(date[1]) > month) {
                 return true;
-            } else if (11 == month){
-                return 30 >= day;
+            } else if (Integer.parseInt(date[1]) == month) {
+                return Integer.parseInt(date[2]) >= day;
             }
         }
         return false;
     }
-    public static boolean validatePhoneNumber(String phoneNumber){
+
+    public static boolean validatePhoneNumber(String phoneNumber) {
         Pattern pattern = Pattern.compile(PHONE_NUMBER_REGEX);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
-    public static boolean validateMail(String mail){
+
+    public static boolean validateMail(String mail) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(mail);
         return matcher.matches();
     }
-    public static boolean validateEmployeeCode(String employeeCode){
+
+    public static boolean validateEmployeeCode(String employeeCode) {
         Pattern pattern = Pattern.compile(EMPLOYEE_CODE_REGEX);
         Matcher matcher = pattern.matcher(employeeCode);
         return matcher.matches();
     }
-    public static boolean validateEmployeeWage(Integer wage){
+
+    public static boolean validateEmployeeWage(Integer wage) {
         return wage >= 0;
     }
-    public static boolean validateCustomerCode(String customerCode){
-        return Pattern.matches(CUSTOMER_CODE_REGEX,customerCode);
+
+    public static boolean validateCustomerCode(String customerCode) {
+        return Pattern.matches(CUSTOMER_CODE_REGEX, customerCode);
     }
 }

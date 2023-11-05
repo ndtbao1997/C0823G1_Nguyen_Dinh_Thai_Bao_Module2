@@ -22,7 +22,7 @@ public class PromotionRepository implements IPromotionRepository {
     public Stack<Customer> getStackCustomer() {
         Set<Customer> customerSet = getCustomerPromotion();
         Stack<Customer> customerStack = new Stack<>();
-        for (Customer customer :customerSet){
+        for (Customer customer : customerSet) {
             customerStack.push(customer);
         }
         return customerStack;

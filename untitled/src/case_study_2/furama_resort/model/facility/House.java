@@ -3,7 +3,9 @@ package case_study_2.furama_resort.model.facility;
 public class House extends Facility {
     private String roomStandards;
     private Integer numberOfFloors;
-    public House(){}
+
+    public House() {
+    }
 
     public House(String roomStandards, Integer numberOfFloors) {
         this.roomStandards = roomStandards;
@@ -20,6 +22,10 @@ public class House extends Facility {
         super(numberOfUses, serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
         this.roomStandards = roomStandards;
         this.numberOfFloors = numberOfFloors;
+    }
+
+    public House(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, Integer maxPeople, String rentalType) {
+        super(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
     }
 
     public String getRoomStandards() {
@@ -40,6 +46,6 @@ public class House extends Facility {
 
     @Override
     public String toString() {
-        return super.toString()+ "," + roomStandards + "," + numberOfFloors;
+        return super.toString() + "," + roomStandards + "," + numberOfFloors;
     }
 }

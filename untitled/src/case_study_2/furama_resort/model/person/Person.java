@@ -1,13 +1,15 @@
 package case_study_2.furama_resort.model.person;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String dateOfBirth;
     private String gender;
     private String numberCMND;
     private String phoneNumber;
     private String email;
-    public Person(){}
+
+    public Person() {
+    }
 
     public Person(String name, String dateOfBirth, String gender, String numberCMND, String phoneNumber, String email) {
         this.name = name;
@@ -65,8 +67,9 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
     @Override
     public String toString() {
-        return  name + "," + dateOfBirth + "," + gender + "," + numberCMND + "," + phoneNumber + "," + email;
+        return name + "," + dateOfBirth + "," + gender + "," + numberCMND + "," + phoneNumber + "," + email;
     }
 }

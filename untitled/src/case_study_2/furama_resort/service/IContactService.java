@@ -4,7 +4,7 @@ import case_study_2.furama_resort.model.booking_contract.Contract;
 
 import java.util.List;
 
-public interface IContactService{
+public interface IContactService {
     void addObject(Contract contract);
 
     List<Contract> getAll();

@@ -10,16 +10,16 @@ import java.util.List;
 
 public class EmployeeService implements IEmployeeService {
     private final IEmployeeRepository iEmployeeRepository = new EmployeeReporitory();
+
     @Override
     public List<Employee> getAll() {
         return iEmployeeRepository.getAll();
     }
 
 
-
     @Override
-    public void addObject(Employee employee, Person person) {
-        iEmployeeRepository.addObject(employee, person);
+    public void addObject(Person person1, Person person) {
+        iEmployeeRepository.addObject(person1, person);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void editObject(Employee employee, Person person) {
-        iEmployeeRepository.editObject(employee,person);
+    public void editObject(Person person1, Person person) {
+        iEmployeeRepository.editObject(person1, person);
     }
 
     @Override

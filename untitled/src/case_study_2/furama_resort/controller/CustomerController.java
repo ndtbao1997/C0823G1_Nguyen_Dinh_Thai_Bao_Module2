@@ -18,12 +18,12 @@ public class CustomerController {
         return iCustomerService.checkObjectCode(customerCode);
     }
 
-    public void addObject(Customer customer, Person person) {
-        iCustomerService.addObject(customer,person);
+    public void addObject(Person person1, Person person) {
+        iCustomerService.addObject(person1, person);
     }
 
-    public void editObject(Customer customer, Person person) {
-        iCustomerService.editObject(customer,person);
+    public void editObject(Person person1, Person person) {
+        iCustomerService.editObject(person1, person);
     }
 
     public void deleteObject(String customerCode) {

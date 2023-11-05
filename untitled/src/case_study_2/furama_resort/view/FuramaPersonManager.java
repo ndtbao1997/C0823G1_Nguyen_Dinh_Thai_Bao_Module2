@@ -5,6 +5,7 @@ import case_study_2.furama_resort.controller.EmployeeController;
 import case_study_2.furama_resort.model.person.Customer;
 import case_study_2.furama_resort.model.person.Employee;
 import case_study_2.furama_resort.model.person.Person;
+import case_study_2.furama_resort.untils.enum_furama.EnumFurama;
 import case_study_2.furama_resort.untils.validate.PersonInforExample;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class FuramaPersonManager {
     private static final Scanner scanner = new Scanner(System.in);
     private static final EmployeeController employeeController = new EmployeeController();
     private static final CustomerController customerController = new CustomerController();
+
     public static void displayEmployeeManagement() {
         int choice;
         try {
@@ -108,6 +110,7 @@ public class FuramaPersonManager {
         System.out.println("Nhập mã nhân viên bạn muốn sửa");
         String employeeCode;
         Person person;
+        Person person1;
         String level;
         String location;
         Integer wage;
@@ -116,11 +119,12 @@ public class FuramaPersonManager {
                 employeeCode = scanner.nextLine();
                 if (PersonInforExample.validateEmployeeCode(employeeCode) && employeeController.checkObjectCode(employeeCode)) {
                     System.out.println("Hãy nhập lại thông tin bạn cần sửa");
-                    person = inputPersonInfor();
+                    person = inputPersonInfor(1);
                     level = inputEmployeeLevel();
                     location = inputEmployeeLocation();
                     wage = inputEmployeeWage();
-                    employeeController.editObject(new Employee(employeeCode, level, location, wage), person);
+                    person1 = new Employee(employeeCode, level, location, wage);
+                    employeeController.editObject(person1, person);
                     System.out.println("Bạn đã sửa thành công");
                     return;
                 } else {
@@ -155,24 +159,26 @@ public class FuramaPersonManager {
 
     public static void addNewEmployee() {
         Person person;
+        Person person1;
         String employeeCode;
         String level;
         String location;
         Integer wage;
         try {
-            person = inputPersonInfor();
+            person = inputPersonInfor(1);
             employeeCode = inputEmployeeCode();
             level = inputEmployeeLevel();
             location = inputEmployeeLocation();
             wage = inputEmployeeWage();
-            employeeController.addObject(new Employee(employeeCode, level, location, wage), person);
+            person1 = new Employee(employeeCode, level, location, wage);
+            employeeController.addObject(person1, person);
             System.out.println("Bạn đã thêm thành công!");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public static Person inputPersonInfor() {
+    public static Person inputPersonInfor(int i) {
         String gender;
         String name;
         String email;
@@ -185,7 +191,11 @@ public class FuramaPersonManager {
         numberCMND = inputPersonNumberCmnd();
         phoneNumber = inputPersonPhoneNumber();
         email = inputPersonEmail();
-        return new Person(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
+        if (i == 1) {
+            return new Employee(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
+        } else {
+            return new Customer(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
+        }
     }
 
     public static Integer inputEmployeeWage() {
@@ -214,17 +224,17 @@ public class FuramaPersonManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Lễ tân";
+                    return EnumFurama.RECEPTIONIST.getValue();
                 case 2:
-                    return "Phục vụ";
+                    return EnumFurama.SERVE.getValue();
                 case 3:
-                    return "Chuyên viên";
+                    return EnumFurama.EXPERT.getValue();
                 case 4:
-                    return "Giám sát";
+                    return EnumFurama.MONITOR.getValue();
                 case 5:
-                    return "Quản lý";
+                    return EnumFurama.MANAGE.getValue();
                 case 6:
-                    return "Giám đốc";
+                    return EnumFurama.MANAGER.getValue();
                 default:
                     System.out.println("Chỉ được chọn từ 1 đến 6!!!");
             }
@@ -242,13 +252,13 @@ public class FuramaPersonManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Trung Cấp";
+                    return EnumFurama.INTERMEDIATE.getValue();
                 case 2:
-                    return "Cao Đẳng";
+                    return EnumFurama.COLLEGE.getValue();
                 case 3:
-                    return "Đại Học";
+                    return EnumFurama.UNIVERSITY.getValue();
                 case 4:
-                    return "Sau Đại Học";
+                    return EnumFurama.AFTER_UNIVERSITY.getValue();
                 default:
                     System.out.println("Chỉ được chọn từ 1 đến 4!!!");
             }
@@ -319,9 +329,9 @@ public class FuramaPersonManager {
             i = Integer.parseInt(scanner.nextLine());
             switch (i) {
                 case 1:
-                    return "Nam";
+                    return EnumFurama.MALE.getValue();
                 case 2:
-                    return "Nữ";
+                    return EnumFurama.FEMALE.getValue();
                 default:
                     System.out.println("Chỉ được chọn 1 hoặc 2!!!");
             }
@@ -441,20 +451,22 @@ public class FuramaPersonManager {
     }
 
     public static void editCustomer() {
-        System.out.println("Nhập mã khách hàng cần sữa:");
         Person person;
+        Person person1;
         String customerCode;
         String guestType;
         String address;
+        System.out.println("Nhập mã khách hàng cần sữa:");
         try {
             do {
                 customerCode = scanner.nextLine();
                 if (PersonInforExample.validateCustomerCode(customerCode) && customerController.checkObjectCode(customerCode)) {
                     System.out.println("Hãy nhập thông tin cần sữa");
-                    person = inputPersonInfor();
+                    person = inputPersonInfor(2);
                     guestType = inputGuestType();
                     address = getAddress(guestType);
-                    customerController.editObject(new Customer(customerCode, guestType, address), person);
+                    person1 = new Customer(customerCode, guestType, address);
+                    customerController.editObject(person1, person);
                     System.out.println("Bạn đã sữa thành công!");
                     return;
                 } else {
@@ -469,15 +481,17 @@ public class FuramaPersonManager {
 
     public static void addNewCustomer() {
         Person person;
+        Person person1;
         String customerCode;
         String guestType;
         String address;
         try {
-            person = inputPersonInfor();
+            person = inputPersonInfor(2);
             customerCode = inputCustomerCode();
             guestType = inputGuestType();
             address = getAddress(guestType);
-            customerController.addObject(new Customer(customerCode, guestType, address), person);
+            person1 = new Customer(customerCode, guestType, address);
+            customerController.addObject(person1, person);
             System.out.println("Bạn đã thêm thành công!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -485,25 +499,14 @@ public class FuramaPersonManager {
     }
 
     public static String getAddress(String guestType) {
-        String address = null;
-        switch (guestType) {
-            case "Diamond":
-                address = "Ngoại ô";
-                break;
-            case "Platinum":
-                address = "Bờ biển";
-                break;
-            case "Gold":
-                address = "Trung tâm thành phố";
-                break;
-            case "Silver":
-                address = "Giữa trung tâm thành phố";
-                break;
-            case "Member":
-                address = "Hòn đảo";
-                break;
-        }
-        return address;
+        return switch (guestType) {
+            case "Diamond" -> EnumFurama.SUBURBAN.getValue();
+            case "Platinum" -> EnumFurama.COAST.getValue();
+            case "Gold" -> EnumFurama.DOWNTOWN.getValue();
+            case "Silver" -> EnumFurama.MIDDLE_DOWNTOWN.getValue();
+            case "Member" -> EnumFurama.ISLAND.getValue();
+            default -> null;
+        };
     }
 
     public static String inputGuestType() {
@@ -518,15 +521,15 @@ public class FuramaPersonManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Diamond";
+                    return EnumFurama.DIAMOND.getValue();
                 case 2:
-                    return "Platinum";
+                    return EnumFurama.PLATINUM.getValue();
                 case 3:
-                    return "Gold";
+                    return EnumFurama.GOLD.getValue();
                 case 4:
-                    return "Silver";
+                    return EnumFurama.SILVER.getValue();
                 case 5:
-                    return "Member";
+                    return EnumFurama.MEMBER.getValue();
                 default:
                     System.out.println("Chỉ được nhập từ 1 đến 5");
             }
@@ -560,9 +563,9 @@ public class FuramaPersonManager {
                         ", gender='" + customer.getGender() + '\'' +
                         ", numberCMND='" + customer.getNumberCMND() + '\'' +
                         ", phoneNumber='" + customer.getPhoneNumber() + '\'' +
-                        ", email='" + customer.getEmail() + '\''+
+                        ", email='" + customer.getEmail() + '\'' +
                         ", guestType='" + customer.getGuestType() + '\'' +
-                        ", address='" + customer.getAddress() + '\''+ ", ");
+                        ", address='" + customer.getAddress() + '\'' + ", ");
             }
         }
     }

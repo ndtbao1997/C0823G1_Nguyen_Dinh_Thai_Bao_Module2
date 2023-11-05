@@ -15,16 +15,16 @@ public class EmployeeController {
         return iEmployeeService.getAll();
     }
 
-    public void addObject(Employee employee, Person person) {
-        iEmployeeService.addObject(employee, person);
+    public void addObject(Person person1, Person person) {
+        iEmployeeService.addObject(person1, person);
     }
 
     public boolean checkObjectCode(String employeeCode) {
         return iEmployeeService.checkObjectCode(employeeCode);
     }
 
-    public void editObject(Employee employee, Person person) {
-        iEmployeeService.editObject(employee,person);
+    public void editObject(Person person1, Person person) {
+        iEmployeeService.editObject(person1, person);
     }
 
     public void deleteObject(String employeeCode) {

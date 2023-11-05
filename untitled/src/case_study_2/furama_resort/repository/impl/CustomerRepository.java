@@ -13,16 +13,17 @@ import java.util.*;
 
 public class CustomerRepository implements ICustomerRepository {
     private static final String PATH = "src/case_study_2/furama_resort/data/data_customer.csv";
+
     public static Set<Customer> getListCustomerBookingYear(Set<Booking> bookingListYear) {
         List<Customer> customerList = getListCustomer();
         Customer newCustomer;
         Set<Customer> customerSet = new TreeSet<>(new PromotionComparator());
-        for (Booking booking:bookingListYear){
-            for (Customer customer:customerList){
-                if (Objects.equals(customer.getCustomerCode(), booking.getCustomerCode())){
-                    newCustomer = new Customer(customer.getName(),customer.getDateOfBirth(),customer.getGender(),
+        for (Booking booking : bookingListYear) {
+            for (Customer customer : customerList) {
+                if (Objects.equals(customer.getCustomerCode(), booking.getCustomerCode())) {
+                    newCustomer = new Customer(customer.getName(), customer.getDateOfBirth(), customer.getGender(),
                             customer.getNumberCMND(), customer.getPhoneNumber(), customer.getEmail(), customer.getCustomerCode(),
-                            customer.getGuestType(), customer.getAddress(),booking.getDateBooking());
+                            customer.getGuestType(), customer.getAddress(), booking.getDateBooking());
                     customerSet.add(newCustomer);
                 }
             }
@@ -35,10 +36,10 @@ public class CustomerRepository implements ICustomerRepository {
         List<Customer> customerList = new ArrayList<>();
         String[] stringArr;
         Customer customer;
-        if (strings.isEmpty()){
+        if (strings.isEmpty()) {
             return customerList;
         } else {
-            for (String s:strings){
+            for (String s : strings) {
                 stringArr = s.split(",");
                 customer = new Customer(stringArr[0], stringArr[1], stringArr[2], stringArr[3], stringArr[4],
                         stringArr[5], stringArr[6], stringArr[7], stringArr[8]);
@@ -65,28 +66,28 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public void addObject(Customer customer, Person person) {
+    public void addObject(Person person1, Person person) {
         List<Customer> customerList = getListCustomer();
         customerList.add(new Customer(person.getName(), person.getDateOfBirth(), person.getGender(), person.getNumberCMND(),
-                person.getPhoneNumber(), person.getEmail(), customer.getCustomerCode(),
-                customer.getGuestType(), customer.getAddress()));
-        WriteFile.WriteToFile(customerList,PATH);
+                person.getPhoneNumber(), person.getEmail(), ((Customer) person1).getCustomerCode(),
+                ((Customer) person1).getGuestType(), ((Customer) person1).getAddress()));
+        WriteFile.WriteToFile(customerList, PATH);
     }
 
     @Override
-    public void editObject(Customer customer, Person person) {
+    public void editObject(Person person1, Person person) {
         List<Customer> customerList = getListCustomer();
-        for (Customer customer1:customerList){
-            if (Objects.equals(customer1.getCustomerCode(), customer.getCustomerCode())){
+        for (Customer customer1 : customerList) {
+            if (Objects.equals(customer1.getCustomerCode(), ((Customer) person1).getCustomerCode())) {
                 customer1.setName(person.getName());
                 customer1.setDateOfBirth(person.getDateOfBirth());
                 customer1.setGender(person.getGender());
                 customer1.setNumberCMND(person.getNumberCMND());
                 customer1.setPhoneNumber(person.getPhoneNumber());
                 customer1.setEmail(person.getEmail());
-                customer1.setGuestType(customer.getGuestType());
-                customer1.setAddress(customer.getAddress());
-                WriteFile.WriteToFile(customerList,PATH);
+                customer1.setGuestType(((Customer) person1).getGuestType());
+                customer1.setAddress(((Customer) person1).getAddress());
+                WriteFile.WriteToFile(customerList, PATH);
                 return;
             }
         }
@@ -95,10 +96,10 @@ public class CustomerRepository implements ICustomerRepository {
     @Override
     public void deleteObject(String customerCode) {
         List<Customer> customerList = getListCustomer();
-        for (Customer customer:customerList){
-            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+        for (Customer customer : customerList) {
+            if (Objects.equals(customer.getCustomerCode(), customerCode)) {
                 customerList.remove(customer);
-                WriteFile.WriteToFile(customerList,PATH);
+                WriteFile.WriteToFile(customerList, PATH);
                 return;
             }
         }
@@ -108,8 +109,8 @@ public class CustomerRepository implements ICustomerRepository {
     public List<Customer> searchObjectByName(String name) {
         List<Customer> customerList = getListCustomer();
         List<Customer> newCustomerList = new ArrayList<>();
-        for (Customer customer:customerList){
-            if (customer.getName().toLowerCase().contains(name.toLowerCase())){
+        for (Customer customer : customerList) {
+            if (customer.getName().toLowerCase().contains(name.toLowerCase())) {
                 newCustomerList.add(customer);
             }
         }

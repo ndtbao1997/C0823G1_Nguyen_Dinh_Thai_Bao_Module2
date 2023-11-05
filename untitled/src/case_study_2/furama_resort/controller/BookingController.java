@@ -1,12 +1,9 @@
 package case_study_2.furama_resort.controller;
 
 import case_study_2.furama_resort.model.booking_contract.Booking;
-import case_study_2.furama_resort.repository.IBookingRepository;
-import case_study_2.furama_resort.repository.impl.BookingRepository;
 import case_study_2.furama_resort.service.IBookingService;
 import case_study_2.furama_resort.service.ipml.BookingService;
 
-import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 

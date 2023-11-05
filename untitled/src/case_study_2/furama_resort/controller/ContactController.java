@@ -1,8 +1,6 @@
 package case_study_2.furama_resort.controller;
 
-import case_study_2.furama_resort.model.booking_contract.Contract;
-import case_study_2.furama_resort.repository.IContactRepository;
-import case_study_2.furama_resort.repository.impl.ContactRepository;
+import case_study_2.furama_resort.model.booking_contract.Contract;;
 import case_study_2.furama_resort.service.IContactService;
 import case_study_2.furama_resort.service.ipml.ContactService;
 

@@ -5,6 +5,7 @@ import case_study_2.furama_resort.model.facility.Facility;
 import case_study_2.furama_resort.model.facility.House;
 import case_study_2.furama_resort.model.facility.Room;
 import case_study_2.furama_resort.model.facility.Villa;
+import case_study_2.furama_resort.untils.enum_furama.EnumFurama;
 import case_study_2.furama_resort.untils.validate.FacilityInforExample;
 
 import java.util.Map;
@@ -49,7 +50,7 @@ public class FuramaFacilityManager {
         }
     }
 
-    private static void deleteFacility() {
+    public static void deleteFacility() {
         System.out.println("Hãy nhập mã dịch vụ bạn muốn xóa");
         String serviceCode;
         do {
@@ -64,7 +65,7 @@ public class FuramaFacilityManager {
         } while (true);
     }
 
-    private static void confirmDeleteFacility(String serviceCode) {
+    public static void confirmDeleteFacility(String serviceCode) {
         int choice;
         System.out.println("Hãy xác nhận là bạn muốn xóa!\n" +
                 "1.Yes\n" +
@@ -85,7 +86,7 @@ public class FuramaFacilityManager {
         } while (true);
     }
 
-    private static void displayListFacilityMaintenance() {
+    public static void displayListFacilityMaintenance() {
         Map<Facility, Integer> facilityIntegerMap = facilityController.getFacilityMaintenance();
         Set<Facility> facilitySet = facilityIntegerMap.keySet();
         if (facilitySet.isEmpty()) {
@@ -126,17 +127,16 @@ public class FuramaFacilityManager {
                             ", roomStandards='" + ((House) key).getRoomStandards() + '\'' +
                             ", numberOfFloors='" + ((House) key).getNumberOfFloors() + '\'' +
                             ", số lần sử dụng:" + facilityIntegerMap.get(key));
-                } else if (key instanceof Room){
+                } else if (key instanceof Room) {
                     System.out.println("serviceCode='" + key.getServiceCode() + '\'' +
                             ", serviceName='" + key.getServiceName() + '\'' +
                             ", usableArea='" + key.getUsableArea() + '\'' +
                             ", rentalCosts='" + key.getRentalCosts() + '\'' +
                             ", maxPeople='" + key.getMaxPeople() + '\'' +
                             ", rentalType='" + key.getRentalType() + '\'' +
-                            ", freeServiceIncluded='" + ((Room) key).getFreeServiceIncluded() + '\''+
+                            ", freeServiceIncluded='" + ((Room) key).getFreeServiceIncluded() + '\'' +
                             ", số lần sử dụng:" + facilityIntegerMap.get(key));
                 }
-
             }
         }
     }
@@ -167,13 +167,13 @@ public class FuramaFacilityManager {
         } while (true);
     }
 
-    private static void addNewRoom() {
+    public static void addNewRoom() {
         String freeServiceIncluded;
         Facility facility;
         System.out.println("Nhập thông tin của Room:");
         Facility facility1;
         try {
-            facility = inputFacilityInfor();
+            facility = inputFacilityInfor(1);
             freeServiceIncluded = inputFreeServiceIncluded();
             facility1 = new Room(freeServiceIncluded);
             facilityController.addObject(facility1, facility);
@@ -183,7 +183,7 @@ public class FuramaFacilityManager {
         }
     }
 
-    private static String inputFreeServiceIncluded() {
+    public static String inputFreeServiceIncluded() {
         int choice;
         System.out.println("Hãy chọn dich vụ đi kèm:\n" +
                 "1. Dịch vụ Massage miễn phí\n" +
@@ -193,11 +193,11 @@ public class FuramaFacilityManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Dịch vụ Massage miễn phí";
+                    return EnumFurama.FREE_MASSAGE_SERVICE.getValue();
                 case 2:
-                    return "Dịch vụ câu cá thư giãn";
+                    return EnumFurama.PERSONAL_RELAXATION_SERVICE.getValue();
                 case 3:
-                    return "Dịch vụ tham gia đánh Gôn";
+                    return EnumFurama.GOLF_PARTICIPATION_SERVICE.getValue();
                 default:
                     System.out.println("Chỉ được nhập từ 1 đến 3");
             }
@@ -210,7 +210,7 @@ public class FuramaFacilityManager {
         Facility facility;
         Facility facility1;
         try {
-            facility = inputFacilityInfor();
+            facility = inputFacilityInfor(2);
             roomStandards = inputVillaAndHouseRoomStandards();
             numberOfFloors = inputVillaAndHouseNumberOfFloors();
             facility1 = new House(roomStandards, numberOfFloors);
@@ -229,7 +229,7 @@ public class FuramaFacilityManager {
         Facility facility1;
         System.out.println("Nhập thông tin của Villa:");
         try {
-            facility = inputFacilityInfor();
+            facility = inputFacilityInfor(3);
             roomStandards = inputVillaAndHouseRoomStandards();
             numberOfFloors = inputVillaAndHouseNumberOfFloors();
             swimmingPoolArea = inputVilaSwimmingPoolArea();
@@ -277,25 +277,31 @@ public class FuramaFacilityManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Ba sao";
+                    return EnumFurama.THREE_STARS.getValue();
                 case 2:
-                    return "Bốn sao";
+                    return EnumFurama.FOUR_STARS.getValue();
                 case 3:
-                    return "Năm sao";
+                    return EnumFurama.FIVE_STARS.getValue();
                 default:
                     System.out.println("Chỉ được chọn từ 1 đến 3");
             }
         } while (true);
     }
 
-    public static Facility inputFacilityInfor() {
+    public static Facility inputFacilityInfor(int i) {
         String serviceCode = inputFacilityCode();
         String serviceName = inputFacilityName();
         Double usableArea = inputFacilityUsableArea();
         Double rentalCosts = inputFacilityRentalCode();
         Integer maxPeople = inputFacilityMaxPeople();
         String rentalType = inputFacilityRentalType();
-        return new Facility(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
+        if (i == 1) {
+            return new Room(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
+        } else if (i == 2) {
+            return new House(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
+        } else {
+            return new Villa(serviceCode, serviceName, usableArea, rentalCosts, maxPeople, rentalType);
+        }
     }
 
     public static String inputFacilityRentalType() {
@@ -309,13 +315,13 @@ public class FuramaFacilityManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Năm";
+                    return EnumFurama.TYPE_YEAR.getValue();
                 case 2:
-                    return "Tháng";
+                    return EnumFurama.TYPE_MONTH.getValue();
                 case 3:
-                    return "Ngày";
+                    return EnumFurama.TYPE_DATE.getValue();
                 case 4:
-                    return "Giờ";
+                    return EnumFurama.TYPE_HOUR.getValue();
                 default:
                     System.out.println("Chỉ được nhập từ 1 đến 4!");
             }
@@ -371,11 +377,11 @@ public class FuramaFacilityManager {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    return "Villa";
+                    return EnumFurama.TYPE_VILLA.getValue();
                 case 2:
-                    return "House";
+                    return EnumFurama.TYPE_HOUR.getValue();
                 case 3:
-                    return "Room";
+                    return EnumFurama.TYPE_ROOM.getValue();
                 default:
                     System.out.println("Chỉ được nhập từ 1 đến 3!");
             }

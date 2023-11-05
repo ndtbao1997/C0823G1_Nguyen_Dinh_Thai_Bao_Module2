@@ -12,15 +12,16 @@ import java.util.*;
 
 public class FacilityRepository implements IFacilityRepository {
     private static final String PATH = "src/case_study_2/furama_resort/data/data_facility.csv";
+
     public static Map<Facility, Integer> getFacilityMap() {
         List<String> strings = ReadFile.readFile(PATH);
-        Map<Facility,Integer> facilityIntegerMap = new LinkedHashMap<>();
+        Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
         String[] stringArr;
         Facility facility;
-        if (strings.isEmpty()){
+        if (strings.isEmpty()) {
             return facilityIntegerMap;
         } else {
-            for (String s:strings){
+            for (String s : strings) {
                 stringArr = s.split(",");
                 if (stringArr.length == 10) {
                     facility = new Villa(stringArr[1], stringArr[2], Double.parseDouble(stringArr[3]),
@@ -34,7 +35,7 @@ public class FacilityRepository implements IFacilityRepository {
                             Integer.parseInt(stringArr[8]));
                     facilityIntegerMap.put(facility, Integer.parseInt(stringArr[0]));
                 }
-                if (stringArr.length == 8){
+                if (stringArr.length == 8) {
                     facility = new Room(stringArr[1], stringArr[2], Double.parseDouble(stringArr[3]),
                             Double.parseDouble(stringArr[4]), Integer.parseInt(stringArr[5]), stringArr[6], stringArr[7]);
                     facilityIntegerMap.put(facility, Integer.parseInt(stringArr[0]));
@@ -43,29 +44,30 @@ public class FacilityRepository implements IFacilityRepository {
             return facilityIntegerMap;
         }
     }
-    public void writeFacility(Map<Facility, Integer> facilityIntegerMap){
+
+    public void writeFacility(Map<Facility, Integer> facilityIntegerMap) {
         List<Facility> facilityList = new ArrayList<>();
         Facility facility;
         Set<Facility> facilitySet = facilityIntegerMap.keySet();
-        for (Facility facility1:facilitySet){
-            if (facility1 instanceof Villa){
-                facility = new Villa(facilityIntegerMap.get(facility1) , facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
+        for (Facility facility1 : facilitySet) {
+            if (facility1 instanceof Villa) {
+                facility = new Villa(facilityIntegerMap.get(facility1), facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
                         facility1.getRentalCosts(), facility1.getMaxPeople(), facility1.getRentalType(), ((Villa) facility1).getRoomStandards(),
                         ((Villa) facility1).getNumberOfFloors(), ((Villa) facility1).getSwimmingPoolArea());
                 facilityList.add(facility);
             } else if (facility1 instanceof House) {
-                facility = new House(facilityIntegerMap.get(facility1),facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
+                facility = new House(facilityIntegerMap.get(facility1), facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
                         facility1.getRentalCosts(), facility1.getMaxPeople(), facility1.getRentalType(), ((House) facility1).getRoomStandards(),
                         ((House) facility1).getNumberOfFloors());
                 facilityList.add(facility);
-            }else if (facility1 instanceof Room) {
-                facility = new Room(facilityIntegerMap.get(facility1),facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
+            } else if (facility1 instanceof Room) {
+                facility = new Room(facilityIntegerMap.get(facility1), facility1.getServiceCode(), facility1.getServiceName(), facility1.getUsableArea(),
                         facility1.getRentalCosts(), facility1.getMaxPeople(), facility1.getRentalType(),
                         ((Room) facility1).getFreeServiceIncluded());
                 facilityList.add(facility);
             }
         }
-        WriteFile.WriteToFile(facilityList,PATH);
+        WriteFile.WriteToFile(facilityList, PATH);
     }
 
     @Override
@@ -137,9 +139,9 @@ public class FacilityRepository implements IFacilityRepository {
     public void addObject(String facilityCode) {
         Map<Facility, Integer> facilityIntegerMap = getFacilityMap();
         Set<Facility> facilitySet = facilityIntegerMap.keySet();
-        for (Facility key:facilitySet){
-            if (Objects.equals(key.getServiceCode(), facilityCode)){
-                facilityIntegerMap.put(key,facilityIntegerMap.getOrDefault(key,-1) +1);
+        for (Facility key : facilitySet) {
+            if (Objects.equals(key.getServiceCode(), facilityCode)) {
+                facilityIntegerMap.put(key, facilityIntegerMap.getOrDefault(key, -1) + 1);
                 writeFacility(facilityIntegerMap);
                 return;
             }
@@ -152,7 +154,7 @@ public class FacilityRepository implements IFacilityRepository {
         Set<Facility> facilitySet = facilityIntegerMap.keySet();
         for (Facility key : facilitySet) {
             if (Objects.equals(key.getServiceCode(), facilityCode)) {
-                if (facilityIntegerMap.get(key) == 5){
+                if (facilityIntegerMap.get(key) == 5) {
                     return true;
                 }
             }
@@ -164,8 +166,8 @@ public class FacilityRepository implements IFacilityRepository {
         List<Facility> facilityList = new ArrayList<>();
         Map<Facility, Integer> facilityIntegerMap = getFacilityMap();
         Set<Facility> facilitySet = facilityIntegerMap.keySet();
-        for (Facility facility:facilitySet){
-            if (Objects.equals(facility.getRentalType(), "Năm")){
+        for (Facility facility : facilitySet) {
+            if (Objects.equals(facility.getRentalType(), "Năm")) {
                 facilityList.add(facility);
             }
         }

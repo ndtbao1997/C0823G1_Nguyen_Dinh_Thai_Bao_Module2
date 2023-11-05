@@ -1,8 +1,5 @@
 package case_study_2.furama_resort.view;
 
-import case_study_2.furama_resort.controller.*;
-import case_study_2.furama_resort.model.person.Customer;
-
 import java.util.*;
 
 public class FuramaResort {

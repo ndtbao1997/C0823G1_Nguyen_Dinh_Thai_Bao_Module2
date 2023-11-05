@@ -8,6 +8,7 @@ public class FacilityInforExample {
     public static boolean validateServiceCode(String serviceCode) {
         return Pattern.matches(SERVICE_CODE_REGEX, serviceCode);
     }
+
     public static boolean validateUsableArea(Double usableArea) {
         return usableArea >= 30;
     }

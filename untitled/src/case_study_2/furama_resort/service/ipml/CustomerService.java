@@ -23,13 +23,13 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void addObject(Customer customer, Person person) {
-        iCustomerRepository.addObject(customer,person);
+    public void addObject(Person person1, Person person) {
+        iCustomerRepository.addObject(person1, person);
     }
 
     @Override
-    public void editObject(Customer customer, Person person) {
-        iCustomerRepository.editObject(customer,person);
+    public void editObject(Person person1, Person person) {
+        iCustomerRepository.editObject(person1, person);
     }
 
     @Override

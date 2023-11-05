@@ -8,11 +8,11 @@ import java.util.List;
 public interface IEmployeeRepository {
     List<Employee> getAll();
 
-    void addObject(Employee employee, Person person);
+    void addObject(Person person1, Person person);
 
     boolean checkObjectCode(String employeeCode);
 
-    void editObject(Employee employee, Person person);
+    void editObject(Person person1, Person person);
 
     void deleteObject(String employeeCode);
 

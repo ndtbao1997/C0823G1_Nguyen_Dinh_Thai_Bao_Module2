@@ -5,7 +5,7 @@ import case_study_2.furama_resort.model.booking_contract.Booking;
 import java.util.Queue;
 import java.util.Set;
 
-public interface IBookingRepository{
+public interface IBookingRepository {
     void addObject(Booking booking);
 
     Set<Booking> getAll();

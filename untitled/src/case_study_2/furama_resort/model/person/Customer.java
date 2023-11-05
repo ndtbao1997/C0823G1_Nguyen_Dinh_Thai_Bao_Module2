@@ -37,6 +37,10 @@ public class Customer extends Person {
         this.bookingDate = bookingDate;
     }
 
+    public Customer(String name, String dateOfBirth, String gender, String numberCMND, String phoneNumber, String email) {
+        super(name, dateOfBirth, gender, numberCMND, phoneNumber, email);
+    }
+
     public String getBookingDate() {
         return bookingDate;
     }
@@ -68,6 +72,7 @@ public class Customer extends Person {
     public void setAddress(String address) {
         this.address = address;
     }
+
     @Override
     public String toString() {
         return super.toString() + "," + customerCode + "," + guestType + "," + address;
