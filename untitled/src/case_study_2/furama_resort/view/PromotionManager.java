@@ -43,7 +43,7 @@ public class PromotionManager {
         int voucher50;
         Stack<Customer> customerStack = promotionController.getStackCustomer();
         if (customerStack.isEmpty()) {
-            System.out.println("Hiện tại không có khách hàng nào có thể nhận Voucher!");
+            System.out.println("Hiện tại không tồn tại khách hàng nào có thể nhận Voucher!");
         } else {
             try {
                 do {
