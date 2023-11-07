@@ -101,4 +101,123 @@ public class EmployeeReporitory implements IEmployeeRepository {
         }
         return newEmployeeList;
     }
+
+    @Override
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getNumberCMND(), numberCMND)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void editEmployeeName(String employeeCode, String name) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setName(name);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeDateOfBirth(String employeeCode, String dateOfBirth) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setDateOfBirth(dateOfBirth);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeGender(String employeeCode, String gender) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setGender(gender);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeNumberCmnd(String employeeCode, String numberCmnd) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setNumberCMND(numberCmnd);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeePhoneNumber(String employeeCode, String phoneNumber) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setPhoneNumber(phoneNumber);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeMail(String employeeCode, String email) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setEmail(email);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeLevel(String employeeCode, String level) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setLevel(level);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeLocation(String employeeCode, String location) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setLocation(location);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editEmployeeWage(String employeeCode, Integer wage) {
+        List<Employee> employeeList = getListEmployee();
+        for (Employee employee:employeeList){
+            if (Objects.equals(employee.getEmployeeCode(), employeeCode)){
+                employee.setWage(wage);
+                WriteFile.WriteToFile(employeeList, PATH);
+                return;
+            }
+        }
+    }
 }

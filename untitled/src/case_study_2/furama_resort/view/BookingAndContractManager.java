@@ -23,12 +23,12 @@ public class BookingAndContractManager {
         int choice;
         try {
             do {
-                System.out.println("1.Add new booking\n" +
-                        "2.Display list booking\n" +
-                        "3.Create new contracts\n" +
-                        "4.Display list contracts\n" +
-                        "5.Edit contracts\n" +
-                        "6.Return main menu");
+                System.out.println("1.Thêm lịch đặt chỗ mới\n" +
+                        "2.Hiển thị lịch đặt chỗ\n" +
+                        "3.Tạo hợp đồng\n" +
+                        "4.Hiển thị danh sách hợp đồng\n" +
+                        "5.Sửa hợp đồng\n" +
+                        "6.Quay lại Menu");
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
@@ -148,7 +148,7 @@ public class BookingAndContractManager {
 
     public static String inputSomeContracts(String bookingCode) {
         String someContracts;
-        System.out.println("Hãy nhập số hợp đồng(Phải có 5 chữ số) của: " + bookingCode);
+        System.out.println("Hãy nhập số hợp đồng (phải có 5 chữ số) của: " + bookingCode);
         do {
             someContracts = scanner.nextLine();
             if (BookingInforExample.validateSomeContracts(someContracts) && (!contactController.checkObjectCode(someContracts))) {
@@ -192,7 +192,7 @@ public class BookingAndContractManager {
             facilityCode = inputFacilityCodeBooking();
             bookingCode = inputBookingCode();
             dateBooking = inputDateBooking();
-            rentalStartDate = inputRentalStarDate(dateBooking);
+            rentalStartDate = inputRentalStarDate(dateBooking, facilityCode);
             rentalEndDate = inputRentalEndDate(rentalStartDate);
             bookingController.addObject(new Booking(bookingCode, dateBooking, rentalStartDate, rentalEndDate, customerCode, facilityCode));
             System.out.println("Bạn đã thêm thành công!");
@@ -204,7 +204,7 @@ public class BookingAndContractManager {
 
     public static String inputRentalEndDate(String rentalStartDate) {
         String rentalEndDate;
-        System.out.println("Nhập ngày kết thúc:");
+        System.out.println("Nhập ngày kết thúc (phải là ngày bắt đầu hoặc các ngày tiếp theo):");
         do {
             rentalEndDate = scanner.nextLine();
             if (BookingInforExample.validateRentalDate(rentalEndDate, rentalStartDate)) {
@@ -216,9 +216,9 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    public static String inputRentalStarDate(String dateBooking) {
+    public static String inputRentalStarDate(String dateBooking, String facilityCode) {
         String rentalStartDate;
-        System.out.println("Nhập ngày bắt đầu");
+        System.out.println("Nhập ngày bắt đầu (phải là ngày booking hoặc các ngày tiếp theo):");
         do {
             rentalStartDate = scanner.nextLine();
             if (BookingInforExample.validateRentalDate(rentalStartDate, dateBooking)) {
@@ -232,7 +232,7 @@ public class BookingAndContractManager {
 
     public static String inputDateBooking() {
         String dateBooking;
-        System.out.println("Nhập ngày booking");
+        System.out.println("Nhập ngày booking (phải là ngày hiện tại):");
         do {
             dateBooking = scanner.nextLine();
             if (BookingInforExample.validateDateBooking(dateBooking)) {
@@ -246,7 +246,7 @@ public class BookingAndContractManager {
 
     public static String inputBookingCode() {
         String bookingCode;
-        System.out.println("Hãy nhập mã Booking");
+        System.out.println("Hãy nhập mã Booking (định dạng BK-XXXX):");
         do {
             bookingCode = scanner.nextLine();
             if (BookingInforExample.validateBookingCode(bookingCode) && (!bookingController.checkObjectCode(bookingCode))) {
@@ -260,7 +260,7 @@ public class BookingAndContractManager {
 
     public static String inputFacilityCodeBooking() {
         String facilityCode;
-        System.out.println("Nhập mã dịch vụ");
+        System.out.println("Nhập mã dịch vụ (định dạng SVVL-XXXX hoặc SVHO-XXXX hoặc SVRO-XXXX)");
         do {
             facilityCode = scanner.nextLine();
             if (FacilityInforExample.validateServiceCode(facilityCode) &&
@@ -276,7 +276,7 @@ public class BookingAndContractManager {
 
     public static String inputCustomerCodeBooking() {
         String customerCode;
-        System.out.println("Hãy nhập mã khách hàng!");
+        System.out.println("Hãy nhập mã khách hàng (định dạng KH-XXXX):");
         do {
             customerCode = scanner.nextLine();
             if (PersonInforExample.validateCustomerCode(customerCode) && customerController.checkObjectCode(customerCode)) {

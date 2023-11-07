@@ -13,12 +13,12 @@ public class FuramaResort {
         int choice;
         try {
             do {
-                System.out.println("1.Employee Management \n" +
-                        "2.Customer Management\n" +
-                        "3.Facility Management\n" +
-                        "4.Booking Management\n" +
-                        "5.Promotion Management\n" +
-                        "6.Exit");
+                System.out.println("1.Quản lý nhân sự \n" +
+                        "2.Quản lý khách hàng\n" +
+                        "3.Quản lý cơ sở dịch vụ\n" +
+                        "4.Quản lý đặt chỗ\n" +
+                        "5.Quản lý khuyến mãi\n" +
+                        "6.Thoát chương trình");
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:

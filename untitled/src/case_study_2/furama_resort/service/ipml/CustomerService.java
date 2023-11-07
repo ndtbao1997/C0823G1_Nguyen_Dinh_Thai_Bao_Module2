@@ -41,4 +41,44 @@ public class CustomerService implements ICustomerService {
     public List<Customer> searchObjectByName(String name) {
         return iCustomerRepository.searchObjectByName(name);
     }
+
+    @Override
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        return iCustomerRepository.checkObjectNumberCmnd(numberCMND);
+    }
+
+    @Override
+    public void editCustomerName(String customerCode, String name) {
+        iCustomerRepository.editCustomerName(customerCode,name);
+    }
+
+    @Override
+    public void editCustomerNumberCmnd(String customerCode, String numberCmnd) {
+        iCustomerRepository.editCustomerNumberCmnd(customerCode,numberCmnd);
+    }
+
+    @Override
+    public void editCustomerDateOfBirth(String customerCode, String dateOfBirth) {
+        iCustomerRepository.editCustomerDateOfBirth(customerCode,dateOfBirth);
+    }
+
+    @Override
+    public void editCustomerGender(String customerCode, String gender) {
+        iCustomerRepository.editCustomerGender(customerCode,gender);
+    }
+
+    @Override
+    public void editCustomerPhoneNumber(String customerCode, String phoneNumber) {
+        iCustomerRepository.editCustomerPhoneNumber(customerCode,phoneNumber);
+    }
+
+    @Override
+    public void editCustomerEmai(String customerCode, String email) {
+        iCustomerRepository.editCustomerEmai(customerCode,email);
+    }
+
+    @Override
+    public void editCustomerGuestType(String customerCode, String guestType, String address) {
+        iCustomerRepository.editCustomerGuestType(customerCode, guestType,address);
+    }
 }

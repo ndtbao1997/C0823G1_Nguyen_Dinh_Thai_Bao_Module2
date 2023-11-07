@@ -24,16 +24,9 @@ public class BookingInforExample {
         String nowDate = String.valueOf(LocalDate.now());
         String[] nowDateArr = nowDate.split("-");
         String[] dateBookingArr = dateBooking.split("/");
-        if (Integer.parseInt(nowDateArr[0]) < Integer.parseInt(dateBookingArr[2])) {
-            return true;
-        } else if (Integer.parseInt(nowDateArr[0]) == Integer.parseInt(dateBookingArr[2])) {
-            if (Integer.parseInt(nowDateArr[1]) < Integer.parseInt(dateBookingArr[1])) {
-                return true;
-            } else if (Integer.parseInt(nowDateArr[1]) == Integer.parseInt(dateBookingArr[1])) {
-                return Integer.parseInt(nowDateArr[2]) <= Integer.parseInt(dateBookingArr[0]);
-            }
-        }
-        return false;
+        return Integer.parseInt(nowDateArr[0]) == Integer.parseInt(dateBookingArr[2]) &&
+                Integer.parseInt(nowDateArr[1]) == Integer.parseInt(dateBookingArr[1]) &&
+                Integer.parseInt(nowDateArr[2]) == Integer.parseInt(dateBookingArr[0]);
     }
 
     public static boolean validateRentalDate(String rental1, String rental2) {

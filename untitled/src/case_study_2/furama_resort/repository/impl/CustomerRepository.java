@@ -116,4 +116,100 @@ public class CustomerRepository implements ICustomerRepository {
         }
         return newCustomerList;
     }
+
+    @Override
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getNumberCMND(), numberCMND)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void editCustomerName(String customerCode, String name) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setName(name);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerNumberCmnd(String customerCode, String numberCmnd) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setNumberCMND(numberCmnd);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerDateOfBirth(String customerCode, String dateOfBirth) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setDateOfBirth(dateOfBirth);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerGender(String customerCode, String gender) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setGender(gender);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerPhoneNumber(String customerCode, String phoneNumber) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setPhoneNumber(phoneNumber);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerEmai(String customerCode, String email) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setEmail(email);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void editCustomerGuestType(String customerCode, String guestType, String address) {
+        List<Customer> customerList = getListCustomer();
+        for (Customer customer: customerList){
+            if (Objects.equals(customer.getCustomerCode(), customerCode)){
+                customer.setGuestType(guestType);
+                customer.setAddress(address);
+                WriteFile.WriteToFile(customerList, PATH);
+                return;
+            }
+        }
+    }
 }

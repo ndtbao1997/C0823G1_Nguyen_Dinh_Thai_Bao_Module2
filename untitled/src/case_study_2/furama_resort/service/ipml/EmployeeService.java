@@ -42,5 +42,55 @@ public class EmployeeService implements IEmployeeService {
         return iEmployeeRepository.searchObjectByName(name);
     }
 
+    @Override
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        return iEmployeeRepository.checkObjectNumberCmnd(numberCMND);
+    }
+
+    @Override
+    public void editEmployeeName(String employeeCode, String name) {
+        iEmployeeRepository.editEmployeeName(employeeCode, name);
+    }
+
+    @Override
+    public void editEmployeeDateOfBirth(String employeeCode, String dateOfBirth) {
+        iEmployeeRepository.editEmployeeDateOfBirth(employeeCode,dateOfBirth);
+    }
+
+    @Override
+    public void editEmployeeGender(String employeeCode, String gender) {
+        iEmployeeRepository.editEmployeeGender(employeeCode,gender);
+    }
+
+    @Override
+    public void editEmployeeNumberCmnd(String employeeCode, String numberCmnd) {
+        iEmployeeRepository.editEmployeeNumberCmnd(employeeCode,numberCmnd);
+    }
+
+    @Override
+    public void editEmployeePhoneNumber(String employeeCode, String phoneNumber) {
+        iEmployeeRepository.editEmployeePhoneNumber(employeeCode,phoneNumber);
+    }
+
+    @Override
+    public void editEmployeeMail(String employeeCode, String email) {
+        iEmployeeRepository.editEmployeeMail(employeeCode, email);
+    }
+
+    @Override
+    public void editEmployeeLevel(String employeeCode, String level) {
+        iEmployeeRepository.editEmployeeLevel(employeeCode,level);
+    }
+
+    @Override
+    public void editEmployeeLocation(String employeeCode, String location) {
+        iEmployeeRepository.editEmployeeLocation(employeeCode,location);
+    }
+
+    @Override
+    public void editEmployeeWage(String employeeCode, Integer wage) {
+        iEmployeeRepository.editEmployeeWage(employeeCode,wage);
+    }
+
 
 }

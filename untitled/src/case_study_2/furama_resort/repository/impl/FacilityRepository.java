@@ -10,7 +10,7 @@ import case_study_2.furama_resort.untils.read_and_write.WriteFile;
 
 import java.util.*;
 
-public class FacilityRepository implements IFacilityRepository {
+public class  FacilityRepository implements IFacilityRepository {
     private static final String PATH = "src/case_study_2/furama_resort/data/data_facility.csv";
 
     public static Map<Facility, Integer> getFacilityMap() {
@@ -18,9 +18,7 @@ public class FacilityRepository implements IFacilityRepository {
         Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
         String[] stringArr;
         Facility facility;
-        if (strings.isEmpty()) {
-            return facilityIntegerMap;
-        } else {
+        if (!strings.isEmpty()) {
             for (String s : strings) {
                 stringArr = s.split(",");
                 if (stringArr.length == 10) {
@@ -41,8 +39,8 @@ public class FacilityRepository implements IFacilityRepository {
                     facilityIntegerMap.put(facility, Integer.parseInt(stringArr[0]));
                 }
             }
-            return facilityIntegerMap;
         }
+        return facilityIntegerMap;
     }
 
     public void writeFacility(Map<Facility, Integer> facilityIntegerMap) {

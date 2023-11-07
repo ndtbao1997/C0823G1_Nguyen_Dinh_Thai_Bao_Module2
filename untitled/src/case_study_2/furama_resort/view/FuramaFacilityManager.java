@@ -9,6 +9,7 @@ import case_study_2.furama_resort.untils.enum_furama.EnumFurama;
 import case_study_2.furama_resort.untils.validate.FacilityInforExample;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -20,11 +21,11 @@ public class FuramaFacilityManager {
         int choice;
         try {
             do {
-                System.out.println("1.Display list facility\n" +
-                        "2.Add new facility\n" +
-                        "3.Display list facility maintenance\n" +
-                        "4.Delete facility\n" +
-                        "5.Return main menu");
+                System.out.println("1.Hiển thị danh sách cơ sở dịch vụ\n" +
+                        "2.Thêm cơ sở dịch vụ\n" +
+                        "3.Hiển thị danh sách cơ sở dịch vụ đang bảo trì\n" +
+                        "4.Xóa cơ sở dịch vụ\n" +
+                        "5.Quay lại Menu");
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
@@ -51,7 +52,7 @@ public class FuramaFacilityManager {
     }
 
     public static void deleteFacility() {
-        System.out.println("Hãy nhập mã dịch vụ bạn muốn xóa");
+        System.out.println("Hãy nhập mã dịch vụ bạn muốn xóa (nhập 3 để quay lại chương trình):");
         String serviceCode;
         do {
             serviceCode = scanner.nextLine();
@@ -62,7 +63,7 @@ public class FuramaFacilityManager {
                 System.out.println("Mã dịch vụ không có hoặc không tồn tại!\n" +
                         "Xin nhập lại");
             }
-        } while (true);
+        } while (!Objects.equals(serviceCode, "3"));
     }
 
     public static void confirmDeleteFacility(String serviceCode) {
@@ -142,27 +143,31 @@ public class FuramaFacilityManager {
     }
 
     public static void addNewFacility() {
-        System.out.println("1.Add New Villa\n" +
-                "2.Add New House\n" +
-                "3.Add New Room\n" +
-                "4.Back to menu");
+        System.out.println("1.Thêm Villa\n" +
+                "2.Thêm House\n" +
+                "3.Thêm Room\n" +
+                "4.Quay lại Menu");
         int choice;
         do {
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    addNewVilla();
-                    return;
-                case 2:
-                    addNewHouse();
-                    return;
-                case 3:
-                    addNewRoom();
-                    return;
-                case 4:
-                    return;
-                default:
-                    System.out.println("Chỉ được nhập từ 1 đến 4!");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        addNewVilla();
+                        return;
+                    case 2:
+                        addNewHouse();
+                        return;
+                    case 3:
+                        addNewRoom();
+                        return;
+                    case 4:
+                        return;
+                    default:
+                        System.out.println("Chỉ được nhập từ 1 đến 4!");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -190,16 +195,20 @@ public class FuramaFacilityManager {
                 "2. Dịch vụ câu cá thư giãn\n" +
                 "3. Dịch vụ tham gia đánh Gôn");
         do {
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    return EnumFurama.FREE_MASSAGE_SERVICE.getValue();
-                case 2:
-                    return EnumFurama.PERSONAL_RELAXATION_SERVICE.getValue();
-                case 3:
-                    return EnumFurama.GOLF_PARTICIPATION_SERVICE.getValue();
-                default:
-                    System.out.println("Chỉ được nhập từ 1 đến 3");
+            try{
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        return EnumFurama.FREE_MASSAGE_SERVICE.getValue();
+                    case 2:
+                        return EnumFurama.PERSONAL_RELAXATION_SERVICE.getValue();
+                    case 3:
+                        return EnumFurama.GOLF_PARTICIPATION_SERVICE.getValue();
+                    default:
+                        System.out.println("Chỉ được nhập từ 1 đến 3");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -243,26 +252,34 @@ public class FuramaFacilityManager {
 
     public static Double inputVilaSwimmingPoolArea() {
         Double swimmingPoolArea;
-        System.out.println("Nhập diện tích hồ bơi");
+        System.out.println("Nhập diện tích hồ bơi (phải lớn hơn 30 và nhỏ hơn 1000):");
         do {
-            swimmingPoolArea = Double.parseDouble(scanner.nextLine());
-            if (FacilityInforExample.validateSwimmingPoolArea(swimmingPoolArea)) {
-                return swimmingPoolArea;
-            } else {
-                System.out.println("Diện tích hồ bơi phải lớn hơn hoặc bằng 30");
+            try {
+                swimmingPoolArea = Double.parseDouble(scanner.nextLine());
+                if (FacilityInforExample.validateSwimmingPoolArea(swimmingPoolArea)) {
+                    return swimmingPoolArea;
+                } else {
+                    System.out.println("Diện tích hồ bơi phải lớn hơn hoặc bằng 30");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
 
     public static Integer inputVillaAndHouseNumberOfFloors() {
         Integer numberOfFloors;
-        System.out.println("Nhập số tầng");
+        System.out.println("Nhập số tầng (số tầng phải lớn hơn 0):");
         do {
-            numberOfFloors = Integer.parseInt(scanner.nextLine());
-            if (FacilityInforExample.validateNumberOfFloors(numberOfFloors)) {
-                return numberOfFloors;
-            } else {
-                System.out.println("Số tầng phải lớn hơn 0!");
+            try{
+                numberOfFloors = Integer.parseInt(scanner.nextLine());
+                if (FacilityInforExample.validateNumberOfFloors(numberOfFloors)) {
+                    return numberOfFloors;
+                } else {
+                    System.out.println("Số tầng phải lớn hơn 0!");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -274,16 +291,20 @@ public class FuramaFacilityManager {
                 "2.Bốn sao\n" +
                 "3.Năm sao");
         do {
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    return EnumFurama.THREE_STARS.getValue();
-                case 2:
-                    return EnumFurama.FOUR_STARS.getValue();
-                case 3:
-                    return EnumFurama.FIVE_STARS.getValue();
-                default:
-                    System.out.println("Chỉ được chọn từ 1 đến 3");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        return EnumFurama.THREE_STARS.getValue();
+                    case 2:
+                        return EnumFurama.FOUR_STARS.getValue();
+                    case 3:
+                        return EnumFurama.FIVE_STARS.getValue();
+                    default:
+                        System.out.println("Chỉ được chọn từ 1 đến 3");
+                }
+            }catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -330,39 +351,51 @@ public class FuramaFacilityManager {
 
     public static Integer inputFacilityMaxPeople() {
         Integer maxPeople;
-        System.out.println("Nhập số lượng người tối đa");
+        System.out.println("Nhập số lượng người tối đa (phải lớn hơn 0 và nhỏ hơn 20):");
         do {
-            maxPeople = Integer.parseInt(scanner.nextLine());
-            if (FacilityInforExample.validateMaxPeople(maxPeople)) {
-                return maxPeople;
-            } else {
-                System.out.println("Số lượng người phải lớn hơn 0 và nhỏ hơn 20!");
+            try{
+                maxPeople = Integer.parseInt(scanner.nextLine());
+                if (FacilityInforExample.validateMaxPeople(maxPeople)) {
+                    return maxPeople;
+                } else {
+                    System.out.println("Số lượng người phải lớn hơn 0 và nhỏ hơn 20!");
+                }
+            }catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
 
     public static Double inputFacilityRentalCode() {
         Double rentalCosts;
-        System.out.println("Nhập chi phí thuê");
+        System.out.println("Nhập chi phí thuê (phải lớn hơn 0):");
         do {
-            rentalCosts = Double.parseDouble(scanner.nextLine());
-            if (FacilityInforExample.validateRentalCosts(rentalCosts)) {
-                return rentalCosts;
-            } else {
-                System.out.println("Chi phí thuê phải lớn hơn không");
+            try{
+                rentalCosts = Double.parseDouble(scanner.nextLine());
+                if (FacilityInforExample.validateRentalCosts(rentalCosts)) {
+                    return rentalCosts;
+                } else {
+                    System.out.println("Chi phí thuê phải lớn hơn không");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
 
     public static Double inputFacilityUsableArea() {
         Double usableArea;
-        System.out.println("Nhập diện tích sử dụng");
+        System.out.println("Nhập diện tích sử dụng (phải lớn hơn 30 và nhỏ hơn 1000)");
         do {
-            usableArea = Double.parseDouble(scanner.nextLine());
-            if (FacilityInforExample.validateUsableArea(usableArea)) {
-                return usableArea;
-            } else {
-                System.out.println("Diện tích sử dụng phải lớn hơn hoặc bằng 30 mét vuông");
+            try{
+                usableArea = Double.parseDouble(scanner.nextLine());
+                if (FacilityInforExample.validateUsableArea(usableArea)) {
+                    return usableArea;
+                } else {
+                    System.out.println("Diện tích sử dụng phải lớn hơn hoặc bằng 30 mét vuông");
+                }
+            }catch (Exception e){
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -390,7 +423,7 @@ public class FuramaFacilityManager {
 
     public static String inputFacilityCode() {
         String serviceCode;
-        System.out.println("Nhập mã dịch vụ");
+        System.out.println("Nhập mã dịch vụ (định dạng SVVL-XXXX hoặc SVRO-XXXX hoặc SVHO-XXXX)");
         do {
             serviceCode = scanner.nextLine();
             if (FacilityInforExample.validateServiceCode(serviceCode) && (!facilityController.checkObjectCode(serviceCode))) {

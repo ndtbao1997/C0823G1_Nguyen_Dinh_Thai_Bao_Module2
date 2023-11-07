@@ -34,4 +34,44 @@ public class EmployeeController {
     public List<Employee> searchObjectByName(String name) {
         return iEmployeeService.searchObjectByName(name);
     }
+
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        return iEmployeeService.checkObjectNumberCmnd(numberCMND);
+    }
+
+    public void editEmployeeName(String employeeCode, String name) {
+        iEmployeeService.editEmployeeName(employeeCode, name);
+    }
+
+    public void editEmployeeDateOfBirth(String employeeCode, String dateOfBirth) {
+        iEmployeeService.editEmployeeDateOfBirth(employeeCode,dateOfBirth);
+    }
+
+    public void editEmployeeGender(String employeeCode, String gender) {
+        iEmployeeService.editEmployeeGender(employeeCode,gender);
+    }
+
+    public void editEmployeeNumberCmnd(String employeeCode, String numberCmnd) {
+        iEmployeeService.editEmployeeNumberCmnd(employeeCode,numberCmnd);
+    }
+
+    public void editEmployeePhoneNumber(String employeeCode, String phoneNumber) {
+        iEmployeeService.editEmployeePhoneNumber(employeeCode,phoneNumber);
+    }
+
+    public void editEmployeeMail(String employeeCode, String email) {
+        iEmployeeService.editEmployeeMail(employeeCode, email);
+    }
+
+    public void editEmployeeLevel(String employeeCode, String level) {
+        iEmployeeService.editEmployeeLevel(employeeCode,level);
+    }
+
+    public void editEmployeeLocation(String employeeCode, String location) {
+        iEmployeeService.editEmployeeLocation(employeeCode,location);
+    }
+
+    public void editEmployeeWage(String employeeCode, Integer wage) {
+        iEmployeeService.editEmployeeWage(employeeCode,wage);
+    }
 }

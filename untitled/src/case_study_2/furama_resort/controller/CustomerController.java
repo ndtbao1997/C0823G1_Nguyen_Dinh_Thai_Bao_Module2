@@ -33,4 +33,36 @@ public class CustomerController {
     public List<Customer> searchObjectByName(String name) {
         return iCustomerService.searchObjectByName(name);
     }
+
+    public boolean checkObjectNumberCmnd(String numberCMND) {
+        return iCustomerService.checkObjectNumberCmnd(numberCMND);
+    }
+
+    public void editCustomerName(String customerCode, String name) {
+        iCustomerService.editCustomerName(customerCode,name);
+    }
+
+    public void editCustomerNumberCmnd(String customerCode, String numberCmnd) {
+        iCustomerService.editCustomerNumberCmnd(customerCode,numberCmnd);
+    }
+
+    public void editCustomerDateOfBirth(String customerCode, String dateOfBirth) {
+        iCustomerService.editCustomerDateOfBirth(customerCode,dateOfBirth);
+    }
+
+    public void editCustomerGender(String customerCode, String gender) {
+        iCustomerService.editCustomerGender(customerCode,gender);
+    }
+
+    public void editCustomerPhoneNumber(String customerCode, String phoneNumber) {
+        iCustomerService.editCustomerPhoneNumber(customerCode,phoneNumber);
+    }
+
+    public void editCustomerEmai(String customerCode, String email) {
+        iCustomerService.editCustomerEmai(customerCode,email);
+    }
+
+    public void editCustomerGuestType(String customerCode, String guestType, String address) {
+        iCustomerService.editCustomerGuestType(customerCode, guestType,address);
+    }
 }
