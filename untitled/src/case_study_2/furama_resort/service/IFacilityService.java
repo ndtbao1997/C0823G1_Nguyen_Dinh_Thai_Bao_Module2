@@ -19,4 +19,7 @@ public interface IFacilityService {
 
     boolean checkRepair(String facilityCode);
 
+    String getRentalType(String s);
+
+    Double getRentalCosts(String s);
 }

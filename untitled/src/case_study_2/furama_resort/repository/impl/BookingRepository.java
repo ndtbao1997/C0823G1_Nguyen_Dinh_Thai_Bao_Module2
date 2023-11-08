@@ -84,4 +84,31 @@ public class BookingRepository implements IBookingRepository {
         }
         return false;
     }
+
+    @Override
+    public boolean checkFacilityCode(String facilityCode) {
+        Set<Booking> bookingSet = getBookingSet();
+        for (Booking booking: bookingSet){
+            if (Objects.equals(booking.getFacilityCode(), facilityCode)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<String> getInforBooking(String bookingCode) {
+        List<String> strings = new ArrayList<>();
+        Set<Booking> bookingSet = getBookingSet();
+        for (Booking booking: bookingSet){
+            if (Objects.equals(booking.getBookingCode(), bookingCode)){
+                strings.add(booking.getRentalStartDate());
+                strings.add(booking.getRentalEndDate());
+                strings.add(booking.getFacilityCode());
+                return strings;
+            }
+        }
+        return strings;
+    }
+
 }

@@ -45,4 +45,13 @@ public class FacilityService implements IFacilityService {
         return iFacilityRepository.checkRepair(facilityCode);
     }
 
+    @Override
+    public String getRentalType(String s) {
+        return iFacilityRepository.getRentalType(s);
+    }
+
+    @Override
+    public Double getRentalCosts(String s) {
+        return iFacilityRepository.getRentalCosts(s);
+    }
 }

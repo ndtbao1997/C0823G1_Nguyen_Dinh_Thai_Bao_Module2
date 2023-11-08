@@ -3,13 +3,13 @@ package case_study_2.furama_resort.model.booking_contract;
 public class Contract {
     private String someContracts;
     private String bookingCode;
-    private Long advanceDepositAmount;
-    private Long totalPaymentAmount;
+    private Double advanceDepositAmount;
+    private Double totalPaymentAmount;
 
     public Contract() {
     }
 
-    public Contract(String someContracts, String bookingCode, Long advanceDepositAmount, Long totalPaymentAmount) {
+    public Contract(String someContracts, String bookingCode, Double advanceDepositAmount, Double totalPaymentAmount) {
         this.someContracts = someContracts;
         this.bookingCode = bookingCode;
         this.advanceDepositAmount = advanceDepositAmount;
@@ -32,19 +32,19 @@ public class Contract {
         this.bookingCode = bookingCode;
     }
 
-    public Long getAdvanceDepositAmount() {
+    public Double getAdvanceDepositAmount() {
         return advanceDepositAmount;
     }
 
-    public void setAdvanceDepositAmount(Long advanceDepositAmount) {
+    public void setAdvanceDepositAmount(Double advanceDepositAmount) {
         this.advanceDepositAmount = advanceDepositAmount;
     }
 
-    public Long getTotalPaymentAmount() {
+    public Double getTotalPaymentAmount() {
         return totalPaymentAmount;
     }
 
-    public void setTotalPaymentAmount(Long totalPaymentAmount) {
+    public void setTotalPaymentAmount(Double totalPaymentAmount) {
         this.totalPaymentAmount = totalPaymentAmount;
     }
 

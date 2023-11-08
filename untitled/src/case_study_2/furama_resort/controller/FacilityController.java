@@ -37,4 +37,11 @@ public class FacilityController {
         return iFacilityService.checkRepair(facilityCode);
     }
 
+    public String getRentalType(String s) {
+        return iFacilityService.getRentalType(s);
+    }
+
+    public Double getRentalCosts(String s) {
+        return iFacilityService.getRentalCosts(s);
+    }
 }

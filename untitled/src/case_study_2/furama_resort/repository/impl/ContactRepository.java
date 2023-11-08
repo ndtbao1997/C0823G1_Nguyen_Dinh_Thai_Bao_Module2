@@ -68,7 +68,7 @@ public class ContactRepository implements IContactRepository {
                 for (String s : stringList) {
                     strings = s.split(",");
                     contractList.add(new Contract(strings[0], strings[1],
-                            Long.parseLong(strings[2]), Long.parseLong(strings[3])));
+                            Double.parseDouble(strings[2]), Double.parseDouble(strings[3])));
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ignored) {

@@ -160,6 +160,30 @@ public class  FacilityRepository implements IFacilityRepository {
         return false;
     }
 
+    @Override
+    public String getRentalType(String s) {
+        Map<Facility, Integer> facilityIntegerMap = getFacilityMap();
+        Set<Facility> facilitySet = facilityIntegerMap.keySet();
+        for (Facility facility : facilitySet) {
+            if (Objects.equals(facility.getServiceCode(), s)) {
+                return facility.getRentalType();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Double getRentalCosts(String s) {
+        Map<Facility, Integer> facilityIntegerMap = getFacilityMap();
+        Set<Facility> facilitySet = facilityIntegerMap.keySet();
+        for (Facility facility : facilitySet) {
+            if (Objects.equals(facility.getServiceCode(), s)) {
+                return facility.getRentalCosts();
+            }
+        }
+        return null;
+    }
+
     public static List<Facility> getListFacilityYear() {
         List<Facility> facilityList = new ArrayList<>();
         Map<Facility, Integer> facilityIntegerMap = getFacilityMap();

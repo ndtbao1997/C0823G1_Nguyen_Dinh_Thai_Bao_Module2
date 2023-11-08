@@ -1,3 +1,6 @@
-0,SVVL-0001,Villa,32.0,1000000.0,5,Ngày,Ba sao,5,32.0
-0,SVHO-0001,Giờ,35.0,2000000.0,10,Ngày,Bốn sao,2
-0,SVRO-0001,Room,32.0,1.0E8,4,Năm,Dịch vụ câu cá thư giãn
+1,SVVL-0001,Villa,32.0,1000.0,5,Ngày,Ba sao,5,32.0
+1,SVHO-0001,Giờ,35.0,2000.0,10,Ngày,Bốn sao,2
+1,SVRO-0001,Room,32.0,100000.0,4,Năm,Dịch vụ câu cá thư giãn
+0,SVVL-0002,Villa,40.0,150000.0,12,Tháng,Bốn sao,3,30.0
+0,SVHO-0002,Giờ,30.0,142000.0,4,Năm,Bốn sao,4
+0,SVRO-0002,Room,40.0,5000.0,8,Ngày,Dịch vụ Massage miễn phí

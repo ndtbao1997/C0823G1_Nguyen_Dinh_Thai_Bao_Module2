@@ -7,10 +7,8 @@ import case_study_2.furama_resort.untils.validate.BookingInforExample;
 import case_study_2.furama_resort.untils.validate.FacilityInforExample;
 import case_study_2.furama_resort.untils.validate.PersonInforExample;
 
-import java.util.List;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 public class BookingAndContractManager {
     private static final Scanner scanner = new Scanner(System.in);
@@ -59,26 +57,30 @@ public class BookingAndContractManager {
 
     public static void editContracts() {
         String someContract;
-        Long advanceDepositAmount;
-        Long totalPaymentAmount;
+        Double advanceDepositAmount;
+        Double totalPaymentAmount;
         String bookingCode;
-        System.out.println("Nhập mã số hợp đồng bạn cần sửa");
+        System.out.println("Nhập mã số hợp đồng bạn cần sửa (định dạng XXXXX, X từ 0-9)");
         do {
             try {
                 someContract = scanner.nextLine();
                 if (BookingInforExample.validateSomeContracts(someContract) && contactController.checkObjectCode(someContract)) {
                     bookingCode = contactController.getBookingCode(someContract);
-                    advanceDepositAmount = inputAdvanceDepositAmount(bookingCode);
                     totalPaymentAmount = inputTotalPaymentAmount(bookingCode);
-                    contactController.editObject(new Contract(someContract, bookingCode, advanceDepositAmount, totalPaymentAmount));
-                    System.out.println("Bạn đã sửa thành công");
+                    advanceDepositAmount = inputAdvanceDepositAmount(bookingCode, totalPaymentAmount);
+                    if((contactController.checkObjectCode(someContract)) && bookingController.checkObjectCode(bookingCode)){
+                        contactController.editObject(new Contract(someContract, bookingCode, advanceDepositAmount, totalPaymentAmount));
+                        System.out.println("Bạn đã sửa thành công");
+                    } else {
+                        System.out.println("Hợp đồng đã bị xóa hoặc mã booking đã bị hủy! Xin xác nhận lại!");
+                    }
                     return;
                 } else {
                     System.out.println("Không hợp lệ hoặc không tồn tại!\n" +
                             "Xin nhập lại");
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         } while (true);
     }
@@ -101,18 +103,24 @@ public class BookingAndContractManager {
         Queue<Booking> bookingQueue = bookingController.getBookingVillaAndHouse();
         String someContracts;
         String bookingCode;
-        Long advanceDepositAmount;
-        Long totalPaymentAmount;
+        Double advanceDepositAmount;
+        Double totalPaymentAmount;
         while (!bookingQueue.isEmpty()) {
             try {
                 bookingCode = bookingQueue.peek().getBookingCode();
                 if (contactController.checkObjectCode(bookingCode)) {
                     bookingQueue.poll();
                 } else {
-                    someContracts = inputSomeContracts(bookingCode);
-                    advanceDepositAmount = inputAdvanceDepositAmount(bookingCode);
+                    someContracts = inputSomeContracts();
                     totalPaymentAmount = inputTotalPaymentAmount(bookingCode);
-                    contactController.addObject(new Contract(someContracts, bookingCode, advanceDepositAmount, totalPaymentAmount));
+                    advanceDepositAmount = inputAdvanceDepositAmount(bookingCode, totalPaymentAmount);
+                    if ((!contactController.checkObjectCode(someContracts)) && bookingController.checkObjectCode(bookingCode)){
+                        contactController.addObject(new Contract(someContracts, bookingCode, advanceDepositAmount, totalPaymentAmount));
+                        System.out.println("Hợp đồng của " + bookingCode + " đã được tạo thành công");
+                    } else {
+                        System.out.println("Hợp đồng đã được tạo hoặc mã booking đã hủy! Xin bạn xác nhận lại");
+                    }
+
                     bookingQueue.poll();
                 }
             } catch (Exception e) {
@@ -122,42 +130,90 @@ public class BookingAndContractManager {
         System.out.println("Tất cả hợp đồng đã hoàn tất");
     }
 
-    public static Long inputTotalPaymentAmount(String bookingCode) {
-        Long advanceDepositAmount;
-        System.out.println("Nhập tổng số tiền thanh toán (phải lớn hơn 0) của: " + bookingCode);
-        do {
-            advanceDepositAmount = Long.parseLong(scanner.nextLine());
-            if (advanceDepositAmount <= 0) {
-                System.out.println("Xin nhập lại!");
-            }
-        } while (advanceDepositAmount <= 0);
-        return advanceDepositAmount;
+    public static Double inputTotalPaymentAmount(String bookingCode) {
+        List<String> strings = bookingController.getInforBooking(bookingCode);
+        String rentalType = facilityController.getRentalType(strings.get(2));
+        Double rentalCosts = facilityController.getRentalCosts(strings.get(2));
+        int totalDate = getTotalDate(strings);
+        switch (rentalType) {
+            case "Năm":
+                getTotalDate(strings);
+                return rentalCosts / 365 * (totalDate);
+            case "Tháng":
+                return rentalCosts / 30 * (totalDate);
+            case "Ngày":
+                return rentalCosts * totalDate;
+            default:
+                return rentalCosts;
+        }
     }
 
-    public static Long inputAdvanceDepositAmount(String bookingCode) {
-        Long advanceDepositAmount;
-        System.out.println("Nhập số tiền thanh toán trước (phải lớn hơn 0) của: " + bookingCode);
-        do {
-            advanceDepositAmount = Long.parseLong(scanner.nextLine());
-            if (advanceDepositAmount <= 0) {
-                System.out.println("Xin nhập lại");
-            }
-        } while (advanceDepositAmount <= 0);
-        return advanceDepositAmount;
+    private static int getTotalDate(List<String> strings) {
+        int date;
+        String[] startDate;
+        String[] endDate;
+        int year;
+        int totalDate;
+        int month;
+        startDate = strings.get(0).split("/");
+        endDate = strings.get(1).split("/");
+        year = Integer.parseInt(endDate[2]) - Integer.parseInt(startDate[2]);
+        if (Integer.parseInt(endDate[1]) < Integer.parseInt(startDate[1])) {
+            month = Integer.parseInt(endDate[1]) + 12 - Integer.parseInt(startDate[1]);
+            year = year - 1;
+        } else {
+            month = Integer.parseInt(endDate[1]) - Integer.parseInt(startDate[1]);
+        }
+        if (Integer.parseInt(endDate[0]) < Integer.parseInt(startDate[0])) {
+            date = Integer.parseInt(endDate[0]) + 30 - Integer.parseInt(startDate[0]);
+            month = month - 1;
+        } else {
+            date = Integer.parseInt(endDate[0]) - Integer.parseInt(startDate[0]);
+        }
+        totalDate = year * 365 + month * 30 + date;
+        return totalDate;
     }
 
-    public static String inputSomeContracts(String bookingCode) {
-        String someContracts;
-        System.out.println("Hãy nhập số hợp đồng (phải có 5 chữ số) của: " + bookingCode);
+    public static Double inputAdvanceDepositAmount(String bookingCode, Double totalPaymentAmount) {
+        Double advanceDepositAmount;
+        System.out.println("Nhập số tiền thanh toán trước của " + bookingCode + " \n" +
+                "(phải lớn hơn 30% tổng số tiền là " + (totalPaymentAmount * 30 / 100) +
+                " và nhỏ hơn hoặc bằng " + totalPaymentAmount + " )");
         do {
-            someContracts = scanner.nextLine();
-            if (BookingInforExample.validateSomeContracts(someContracts) && (!contactController.checkObjectCode(someContracts))) {
-                return someContracts;
-            } else {
-                System.out.println("Không hợp lệ hoặc đã tồn tại!\n" +
-                        "Xin nhập lại!");
+            try {
+                advanceDepositAmount = Double.parseDouble(scanner.nextLine());
+                if ((advanceDepositAmount > (totalPaymentAmount*30/100)) && (advanceDepositAmount <= totalPaymentAmount)) {
+                    return advanceDepositAmount;
+                } else {
+                    System.out.println("Xin nhập lại");
+                }
+            } catch (Exception e) {
+                System.err.println("Xin nhập lại");
             }
         } while (true);
+    }
+
+    public static String inputSomeContracts() {
+        String someContracts;
+        int some;
+        List<Contract> contractList = contactController.getAll();
+        if (contractList.isEmpty()) {
+            someContracts = "00001";
+        } else {
+            some = Integer.parseInt(contractList.get(contractList.size() - 1).getSomeContracts()) + 1;
+            if (some < 10) {
+                someContracts = "0000" + some;
+            } else if (some < 100) {
+                someContracts = "000" + some;
+            } else if (some < 1000) {
+                someContracts = "00" + some;
+            } else if (some < 10000) {
+                someContracts = "0" + some;
+            } else {
+                someContracts = String.valueOf(some);
+            }
+        }
+        return someContracts;
     }
 
     public static void distplayListBooking() {
@@ -190,18 +246,24 @@ public class BookingAndContractManager {
             System.out.println("Danh sách dịch vụ");
             FuramaFacilityManager.displayListFacility();
             facilityCode = inputFacilityCodeBooking();
-            bookingCode = inputBookingCode();
+            bookingCode = getBookingCode();
             dateBooking = inputDateBooking();
-            rentalStartDate = inputRentalStarDate(dateBooking, facilityCode);
+            rentalStartDate = inputRentalStarDate(dateBooking);
             rentalEndDate = inputRentalEndDate(rentalStartDate);
-            bookingController.addObject(new Booking(bookingCode, dateBooking, rentalStartDate, rentalEndDate, customerCode, facilityCode));
-            System.out.println("Bạn đã thêm thành công!");
-            facilityController.addObject(facilityCode);
+            if(customerController.checkObjectCode(customerCode) && facilityController.checkObjectCode(facilityCode) &&
+                    (!facilityController.checkRepair(facilityCode)) && (!bookingController.checkFacilityCode(facilityCode))){
+                bookingController.addObject(new Booking(bookingCode, dateBooking, rentalStartDate, rentalEndDate, customerCode, facilityCode));
+                System.out.println("Bạn đã thêm thành công!");
+                facilityController.addObject(facilityCode);
+            } else {
+                System.out.println("Có một số thông tin đã thay đổi. Bạn hãy kiểm tra lại các thông tin như: mã khách hàng," +
+                        "mã dịch vụ, danh sách sách bảo trì,...");
+            }
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
-
     public static String inputRentalEndDate(String rentalStartDate) {
         String rentalEndDate;
         System.out.println("Nhập ngày kết thúc (phải là ngày bắt đầu hoặc các ngày tiếp theo):");
@@ -216,15 +278,33 @@ public class BookingAndContractManager {
         } while (true);
     }
 
-    public static String inputRentalStarDate(String dateBooking, String facilityCode) {
+    public static String inputRentalStarDate(String dateBooking) {
         String rentalStartDate;
-        System.out.println("Nhập ngày bắt đầu (phải là ngày booking hoặc các ngày tiếp theo):");
+        String[] startDate;
+        String[] dateBook;
+        System.out.println("Nhập ngày bắt đầu (phải là ngày booking hoặc sau ngày booking 2 tuần):");
         do {
             rentalStartDate = scanner.nextLine();
             if (BookingInforExample.validateRentalDate(rentalStartDate, dateBooking)) {
-                return rentalStartDate;
+                startDate = rentalStartDate.split("/");
+                dateBook = dateBooking.split("/");
+                if (Integer.parseInt(startDate[2]) == Integer.parseInt(dateBook[2])) {
+                    if (Integer.parseInt(startDate[1]) == Integer.parseInt(dateBook[1])) {
+                        if (Integer.parseInt(startDate[0]) - Integer.parseInt(dateBook[0]) <= 14) {
+                            return rentalStartDate;
+                        } else {
+                            System.out.println("Phải là ngày booking hoặc sau ngày booking 2 tuần! Xin nhập lại!");
+                        }
+                    } else if (Integer.parseInt(startDate[1]) - Integer.parseInt(dateBook[1]) == 1) {
+                        if ((Integer.parseInt(startDate[0]) + 30 - Integer.parseInt(dateBook[0])) <= 14) {
+                            return rentalStartDate;
+                        } else {
+                            System.out.println("Phải là ngày booking hoặc sau ngày booking 2 tuần! Xin nhập lại!");
+                        }
+                    }
+                }
             } else {
-                System.out.println("Không hợp lê!\n" +
+                System.out.println("Không hợp lệ!\n" +
                         "Xin nhập lại!");
             }
         } while (true);
@@ -232,30 +312,35 @@ public class BookingAndContractManager {
 
     public static String inputDateBooking() {
         String dateBooking;
-        System.out.println("Nhập ngày booking (phải là ngày hiện tại):");
-        do {
-            dateBooking = scanner.nextLine();
-            if (BookingInforExample.validateDateBooking(dateBooking)) {
-                return dateBooking;
-            } else {
-                System.out.println("Không hợp lê!\n" +
-                        "Xin nhập lại!");
-            }
-        } while (true);
+        String dateNow = String.valueOf(LocalDate.now());
+        String[] dateNowArr = dateNow.split("-");
+        dateBooking = dateNowArr[2] + "/" + dateNowArr[1] + "/" + dateNowArr[0];
+        return dateBooking;
     }
 
-    public static String inputBookingCode() {
+    public static String getBookingCode() {
         String bookingCode;
-        System.out.println("Hãy nhập mã Booking (định dạng BK-XXXX):");
-        do {
-            bookingCode = scanner.nextLine();
-            if (BookingInforExample.validateBookingCode(bookingCode) && (!bookingController.checkObjectCode(bookingCode))) {
-                return bookingCode;
+        List<Booking> bookingList;
+        String[] strings;
+        int code;
+        Set<Booking> bookingSet = bookingController.getAll();
+        if (bookingSet.isEmpty()) {
+            bookingCode = "BK-0001";
+        } else {
+            bookingList = new ArrayList<>(bookingSet);
+            strings = bookingList.get(bookingList.size() - 1).getBookingCode().split("-");
+            code = Integer.parseInt(strings[1]) + 1;
+            if (code < 10) {
+                bookingCode = "BK-000" + code;
+            } else if (code < 100) {
+                bookingCode = "BK-00" + code;
+            } else if (code < 1000) {
+                bookingCode = "BK-0" + code;
             } else {
-                System.out.println("Không hợp lệ hoặc không tồn tại!\n" +
-                        "Xin nhập lại");
+                bookingCode = "BK-" + code;
             }
-        } while (true);
+        }
+        return bookingCode;
     }
 
     public static String inputFacilityCodeBooking() {
@@ -263,13 +348,22 @@ public class BookingAndContractManager {
         System.out.println("Nhập mã dịch vụ (định dạng SVVL-XXXX hoặc SVHO-XXXX hoặc SVRO-XXXX)");
         do {
             facilityCode = scanner.nextLine();
-            if (FacilityInforExample.validateServiceCode(facilityCode) &&
-                    facilityController.checkObjectCode(facilityCode) &&
-                    (!facilityController.checkRepair(facilityCode))) {
-                return facilityCode;
+            if (FacilityInforExample.validateServiceCode(facilityCode)) {
+                if (facilityController.checkObjectCode(facilityCode)) {
+                    if (!facilityController.checkRepair(facilityCode)) {
+                        if (!bookingController.checkFacilityCode(facilityCode)) {
+                            return facilityCode;
+                        } else {
+                            System.out.println("Hiện tại dịch vụ này không còn trống! Xin chọn dịch vụ khác");
+                        }
+                    } else {
+                        System.out.println("Đang bảo trì. Xin chọn dịch vụ khác!");
+                    }
+                } else {
+                    System.out.println("Không tồn tại. Xin nhập lại.");
+                }
             } else {
-                System.out.println("Không hợp lệ hoặc không tồn tại hoặc đang bảo trì!\n" +
-                        "Xin nhập lại");
+                System.out.println("Không hợp lệ. Xin nhập lại.");
             }
         } while (true);
     }
